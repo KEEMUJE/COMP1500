@@ -14,14 +14,13 @@ namespace Assignment1
                 integerArrays[arrayNumbers] = int.Parse(input.ReadLine());
             }
 
-            output.WriteLine("{0,10}{1,10}{2,10}", "oct", "dec", "hex");
+            output.WriteLine("{0,10}{1,11}{2,11}", "oct", "dec", "hex");
 
             for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
             {
-                // COMP1500 문자열 강의, 레퍼런스 String.Format 메서드 참고하기.
                 output.Write("{0, 10}", System.Convert.ToString(integerArrays[outputNumbers], 8));
-                output.Write("{0, 10}", System.Convert.ToString(integerArrays[outputNumbers], 10));
-                output.Write("{0, 10}", System.Convert.ToString(integerArrays[outputNumbers], 16));
+                output.Write("{0, 11}", System.Convert.ToString(integerArrays[outputNumbers], 10));
+                output.Write("{0, 11}", integerArrays[outputNumbers].ToString("X"));
                 output.WriteLine("");
             }
         }
@@ -51,7 +50,15 @@ namespace Assignment1
                         output.WriteLine("{0,-7}{1,18}", "Average", (doubleArraysSum / 5).ToString("f3"));
                     }
 
-                    else
+                    else if (doubleArraysSum < -9999999999999)
+                    {
+                        output.WriteLine("{0,-6}{1,19}", "Min", doubleArrays[0].ToString("f3"));
+                        output.WriteLine("{0,-6}{1,19}", "Max", doubleArrays[4].ToString("f3"));
+                        output.WriteLine("{0,-5}{1,20}", "Sum", doubleArraysSum.ToString("f3"));
+                        output.WriteLine("{0,-7}{1,18}", "Average", (doubleArraysSum / 5).ToString("f3"));
+                    }
+
+                    else if (doubleArraysSum < 99999999999999)
                     {
                         output.WriteLine("{0,-7}{1,18}", "Min", doubleArrays[0].ToString("f3"));
                         output.WriteLine("{0,-7}{1,18}", "Max", doubleArrays[4].ToString("f3"));
