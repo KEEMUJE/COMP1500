@@ -7,7 +7,6 @@ namespace Assignment1
         public static void PrintIntegers(StreamReader input, StreamWriter output, int width)
         {
             int[] integerArrays = new int[5];
-            width = 10;
 
             for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
             {
@@ -16,6 +15,7 @@ namespace Assignment1
 
             if (width > 9)
             {
+                width = 10;
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
                 for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
