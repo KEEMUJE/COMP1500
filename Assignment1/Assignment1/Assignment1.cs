@@ -8,7 +8,7 @@ namespace Assignment1
         {
             uint[] integerArrays = new uint[5];
 
-            for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
+            for (uint arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
             {
                 integerArrays[arrayNumbers] = uint.Parse(input.ReadLine());
             }
@@ -17,7 +17,7 @@ namespace Assignment1
             {
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
-                for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
+                for (uint outputNumbers = 0; outputNumbers < 5; outputNumbers++)
                 {
                     output.Write($"{{0, {width}}}", System.Convert.ToString(integerArrays[outputNumbers], 8));
                     output.Write($"{{0, {width + 1}}}", integerArrays[outputNumbers]);
@@ -31,7 +31,7 @@ namespace Assignment1
                 width = 10;
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
-                for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
+                for (uint outputNumbers = 0; outputNumbers < 5; outputNumbers++)
                 {
                     output.Write($"{{0, {width}}}", System.Convert.ToString(integerArrays[outputNumbers], 8));
                     output.Write($"{{0, {width + 1}}}", integerArrays[outputNumbers]);
