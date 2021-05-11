@@ -28,6 +28,7 @@ namespace Assignment1
 
             else if (width < 10)
             {
+                width = 10;
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
                 for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
