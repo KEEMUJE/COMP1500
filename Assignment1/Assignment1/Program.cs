@@ -8,7 +8,7 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
-            string integerInput = "52\n102\n299999999\n2382\n409"; // PrintIntegers() Auto input
+            string integerInput = "52\n102\n11111\n2382\n409"; // PrintIntegers() Auto input
             string floatInput = "2.23\n-1912.87233125\n2323\n1\n34.55567"; // PrintStats() Auto input
             byte[] buffer1 = Encoding.UTF8.GetBytes(integerInput);
             byte[] buffer2 = Encoding.UTF8.GetBytes(floatInput);

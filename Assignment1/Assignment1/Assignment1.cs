@@ -6,18 +6,18 @@ namespace Assignment1
     {
         public static void PrintIntegers(StreamReader input, StreamWriter output, int width)
         {
-            uint[] integerArrays = new uint[5];
+            long[] integerArrays = new long[5];
 
-            for (uint arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
+            for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
             {
-                integerArrays[arrayNumbers] = uint.Parse(input.ReadLine());
+                integerArrays[arrayNumbers] = long.Parse(input.ReadLine());
             }
 
             if (width >= 10)
             {
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
-                for (uint outputNumbers = 0; outputNumbers < 5; outputNumbers++)
+                for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
                 {
                     output.Write($"{{0, {width}}}", System.Convert.ToString(integerArrays[outputNumbers], 8));
                     output.Write($"{{0, {width + 1}}}", integerArrays[outputNumbers]);
@@ -31,7 +31,7 @@ namespace Assignment1
                 width = 10;
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
-                for (uint outputNumbers = 0; outputNumbers < 5; outputNumbers++)
+                for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
                 {
                     output.Write($"{{0, {width}}}", System.Convert.ToString(integerArrays[outputNumbers], 8));
                     output.Write($"{{0, {width + 1}}}", integerArrays[outputNumbers]);
