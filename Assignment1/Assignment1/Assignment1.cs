@@ -7,6 +7,7 @@ namespace Assignment1
         public static void PrintIntegers(StreamReader input, StreamWriter output, int width)
         {
             int[] integerArrays = new int[5];
+            string[] progression = { "oct", "dec", "hex" };
             width = 10;
 
             for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
@@ -14,13 +15,13 @@ namespace Assignment1
                 integerArrays[arrayNumbers] = int.Parse(input.ReadLine());
             }
 
-            output.WriteLine("{0,10}{1,11}{2,11}", "oct", "dec", "hex");
+            output.WriteLine($"{{0,{width}}}{{1,{width}}}{{2,{width}}}", "oct", "dec", "hex");
 
             for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
             {
-                output.Write("{0, 10}", System.Convert.ToString(integerArrays[outputNumbers], 8));
-                output.Write("{0, 11}", System.Convert.ToString(integerArrays[outputNumbers], 10));
-                output.Write("{0, 11}", integerArrays[outputNumbers].ToString("X"));
+                output.Write($"{{0, {width}}}", System.Convert.ToString(integerArrays[outputNumbers], 8));
+                output.Write($"{{0, {width}}}", integerArrays[outputNumbers]);
+                output.Write($"{{0, {width}}}", integerArrays[outputNumbers].ToString("X"));
                 output.WriteLine("");
             }
         }
