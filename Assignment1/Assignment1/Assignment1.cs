@@ -6,14 +6,14 @@ namespace Assignment1
     {
         public static void PrintIntegers(StreamReader input, StreamWriter output, int width)
         {
-            int[] integerArrays = new int[5];
+            uint[] integerArrays = new uint[5];
 
             for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
             {
-                integerArrays[arrayNumbers] = int.Parse(input.ReadLine());
+                integerArrays[arrayNumbers] = uint.Parse(input.ReadLine());
             }
 
-            if (width > 10)
+            if (width >= 10)
             {
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
