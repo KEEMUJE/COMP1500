@@ -13,7 +13,7 @@ namespace Assignment1
                 integerArrays[arrayNumbers] = int.Parse(input.ReadLine());
             }
 
-            if (width > 9)
+            if (width > 10)
             {
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
 
@@ -26,7 +26,7 @@ namespace Assignment1
                 }
             }
 
-            else if (width < 10)
+            else if (width <= 9)
             {
                 width = 10;
                 output.WriteLine($"{{0,{width}}}{{1,{width + 1}}}{{2,{width + 1}}}", "oct", "dec", "hex");
