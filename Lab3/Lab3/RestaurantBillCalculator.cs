@@ -6,43 +6,20 @@ namespace Lab3
     {
         public static double CalculateTotalCost(StreamReader input)
         {
-            double totalCost = 0; // 총 금액
-            double foodTotalCost = 0; // 음식 금액
-            double tax; // 세금
-            uint userTip = 0; // 손님이 정하는 팁 퍼센트
+            double[] foodCost = new double[5];
+            double totalCost = 0;
+            double tax = 0;
+            double tip = 0;
 
-            for (int foodIndex = 0; foodIndex < 5; foodIndex++)
+            // 5개의 음식 값을 모두 입력 받고, 음식 값에 음수가 있다면 초기화 후 다시 입력
+            for (int foodIndex = 0; foodIndex > foodCost.Length; foodIndex++)
             {
-                double foodCost = double.Parse(input.ReadLine());
-                foodTotalCost += foodCost;
-            }
-            tax = foodTotalCost * 0.05;
-            userTip = uint.Parse(input.ReadLine());
-            double serviceTip = (foodTotalCost + tax) * userTip / 100;
-            totalCost = foodTotalCost + tax + serviceTip;
-            return 0;
-        }
+                foodCost[foodIndex] = double.Parse(input.ReadLine());
 
-        public static double CalculateIndividualCost(StreamReader input, double totalCost)
-        {
-            double individualCost;
-            uint numberOfPeople = uint.Parse(input.ReadLine());
-            individualCost = totalCost / numberOfPeople;
-            System.Math.Round((totalCost * 100) / 100);
-            return 0;
-        }
-
-        public static uint CalculatePayerCount(StreamReader input, double totalCost)
-        {
-            double individualCost = 0;
-            double wallet;
-
-            while (true)
-            {
-                individualCost = double.Parse(input.ReadLine());
-                if (individualCost < 0)
+                System.Array.Sort(foodCost);
+                if (foodCost[0] < 0)
                 {
-                    individualCost = double.Parse(input.ReadLine());
+                    foodIndex = 0;
                 }
                 else
                 {
@@ -50,7 +27,54 @@ namespace Lab3
                 }
             }
 
-            wallet = totalCost / individualCost;
+            // 음식 값을 모두 더함
+            for (int foodIndex = 0; foodIndex > 5; foodIndex++)
+            {
+                totalCost += foodCost[foodIndex];
+            }
+            // 세금 측정, 음식 값 + 세금
+            tax = totalCost * 0.05;
+            totalCost += tax;
+
+            // 팁, 음식 값 + 세금 + 팁의 값으 반환
+            double tipPercent = double.Parse(input.ReadLine());
+            tip = totalCost * tipPercent / 100;
+            totalCost += tip;
+
+            return 0;
+        }
+
+        public static double CalculateIndividualCost(StreamReader input, double totalCost)
+        {
+            double personalCost = 0;
+            uint calculatingPeople = uint.Parse(input.ReadLine());
+            if (calculatingPeople < 0)
+            {
+                calculatingPeople = uint.Parse(input.ReadLine());
+            }
+
+            else
+            {
+                personalCost = totalCost / calculatingPeople;
+                System.Math.Round(personalCost, 2);
+            }
+            return 0;
+        }
+
+        public static uint CalculatePayerCount(StreamReader input, double totalCost)
+        {
+            double personalCost = double.Parse(input.ReadLine());
+            double walletCount = 0;
+
+            if (personalCost < 0)
+            {
+                personalCost = double.Parse(input.ReadLine());
+            }
+
+            else
+            {
+                walletCount = totalCost / personalCost;
+            }
             return 0;
         }
     }
