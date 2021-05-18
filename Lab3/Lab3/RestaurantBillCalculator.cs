@@ -11,7 +11,7 @@ namespace Lab3
             double tax;
             double tip;
 
-            for (int foodIndex = 0; foodIndex < foodCost.Length; foodIndex++)
+            for (int foodIndex = 0; foodIndex < 5; foodIndex++)
             {
                 foodCost[foodIndex] = double.Parse(input.ReadLine());
             }
@@ -27,8 +27,8 @@ namespace Lab3
             double tipPercent = double.Parse(input.ReadLine());
             tip = totalCost * tipPercent / 100;
             totalCost += tip;
-            System.Math.Round(totalCost, 2);
-            return 0;
+            System.Math.Round((totalCost * 100) / 100);
+            return totalCost;
         }
 
         public static double CalculateIndividualCost(StreamReader input, double totalCost)
@@ -45,7 +45,7 @@ namespace Lab3
                 personalCost = totalCost / calculatingPeople;
                 System.Math.Round(personalCost, 2);
             }
-            return 0;
+            return personalCost;
         }
 
         public static uint CalculatePayerCount(StreamReader input, double totalCost)
@@ -62,7 +62,7 @@ namespace Lab3
             {
                 walletCount = totalCost / personalCost;
             }
-            return 0;
+            return (uint)walletCount;
         }
     }
 }
