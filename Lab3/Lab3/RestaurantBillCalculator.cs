@@ -27,42 +27,46 @@ namespace Lab3
             double tipPercent = double.Parse(input.ReadLine());
             tip = totalCost * tipPercent / 100;
             totalCost += tip;
-            System.Math.Round((totalCost * 100) / 100);
+            totalCost = System.Math.Round(totalCost, 2);
             return totalCost;
         }
 
         public static double CalculateIndividualCost(StreamReader input, double totalCost)
         {
-            double personalCost = 0;
-            uint calculatingPeople = uint.Parse(input.ReadLine());
-            if (calculatingPeople < 0)
+            double individualCost = 0;
+            uint payerCount = uint.Parse(input.ReadLine());
+
+            if (payerCount < 0)
             {
-                calculatingPeople = uint.Parse(input.ReadLine());
+                payerCount = uint.Parse(input.ReadLine());
             }
 
             else
             {
-                personalCost = totalCost / calculatingPeople;
-                System.Math.Round(personalCost, 2);
+                individualCost = totalCost / payerCount;
             }
-            return personalCost;
+
+            individualCost = System.Math.Round(individualCost, 2);
+            return individualCost;
         }
 
         public static uint CalculatePayerCount(StreamReader input, double totalCost)
         {
-            double personalCost = double.Parse(input.ReadLine());
-            double walletCount = 0;
+            double payerCount = 0;
+            double individualCost = double.Parse(input.ReadLine());
 
-            if (personalCost < 0)
+            if (individualCost < 0)
             {
-                personalCost = double.Parse(input.ReadLine());
+                individualCost = double.Parse(input.ReadLine());
             }
 
             else
             {
-                walletCount = totalCost / personalCost;
+                payerCount = totalCost / individualCost;
             }
-            return (uint)walletCount;
+
+            payerCount = System.Math.Ceiling(payerCount);
+            return (uint)payerCount;
         }
     }
 }
