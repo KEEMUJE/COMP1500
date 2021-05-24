@@ -6,45 +6,34 @@ namespace Lab3
     {
         public static double CalculateTotalCost(StreamReader input)
         {
-            double[] foodCost = new double[5];
+            int foodCount = 5;
+            double[] foodCost = new double[foodCount];
             double totalCost = 0;
             double tax;
             double tip;
 
-            for (int foodIndex = 0; foodIndex < 5; foodIndex++)
+            for (int foodIndex = 0; foodIndex < foodCount; foodIndex++)
             {
                 foodCost[foodIndex] = double.Parse(input.ReadLine());
-            }
-
-            for (int foodIndex = 0; foodIndex < 5; foodIndex++)
-            {
-                totalCost += foodCost[foodIndex];
+                totalCost += foodCost[foodIndex]; // 이 부분 아래에 for문을 한번 더 써서 실행했는데, 쓸데없이 여러번 써서 병합
             }
 
             tax = totalCost * 0.05;
-            totalCost += tax;
+            totalCost += tax; // 음식 값 + 세금
 
             double tipPercent = double.Parse(input.ReadLine());
             tip = totalCost * tipPercent / 100;
-            totalCost += tip;
+            totalCost += tip; // 음식 값 + 세금 + 팁
             totalCost = System.Math.Round(totalCost, 2);
             return totalCost;
         }
 
         public static double CalculateIndividualCost(StreamReader input, double totalCost)
         {
-            double individualCost = 0;
+            double individualCost;
             uint payerCount = uint.Parse(input.ReadLine());
 
-            if (payerCount < 0)
-            {
-                payerCount = uint.Parse(input.ReadLine());
-            }
-
-            else
-            {
-                individualCost = totalCost / payerCount;
-            }
+            individualCost = totalCost / payerCount;
 
             individualCost = System.Math.Round(individualCost, 2);
             return individualCost;
