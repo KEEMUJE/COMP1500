@@ -48,27 +48,27 @@
             {
                 return 30;
             }
-            
-            else if (year % 400 == 0)
-            {
-                return 28;
-            }
-            else if (year % 100 == 0)
-            {
-                return 28;
-            }
-            else if (year % 4 == 0)
+
+            else if (year % 400 == 0 && year % 100 == 0 && year % 4 == 0 && month == 2)
             {
                 return 29;
             }
-            else if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0)
+            else if (year % 400 == 0 && month == 2)
+            {
+                return 28;
+            }
+            else if (year % 100 == 0 && month == 2)
+            {
+                return 28;
+            }
+            else if (year % 4 == 0 && month == 2)
             {
                 return 29;
             }
             else
             {
                 return 28;
-            }    
+            }
         }
     }
 }
