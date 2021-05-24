@@ -6,7 +6,11 @@
         {
             bool bLeapYear;
 
-            if (year % 400 == 0)
+            if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0)
+            {
+                bLeapYear = true;
+            }
+            else if (year % 400 == 0)
             {
                 bLeapYear = false;
             }
@@ -21,11 +25,6 @@
             else
             {
                 bLeapYear = false;
-            }
-
-            if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0)
-            {
-                bLeapYear = true;
             }
             return bLeapYear;
         }
@@ -48,7 +47,7 @@
             {
                 return 30;
             }
-
+            // year, month의 값을 논리곱 연산을 통해 윤년의 2월인지 아닌지를 판단
             else if (year % 400 == 0 && year % 100 == 0 && year % 4 == 0 && month == 2)
             {
                 return 29;
