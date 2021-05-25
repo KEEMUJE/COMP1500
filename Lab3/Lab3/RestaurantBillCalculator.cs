@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Lab3
 {
@@ -6,25 +7,19 @@ namespace Lab3
     {
         public static double CalculateTotalCost(StreamReader input)
         {
-            int foodCount = 5;
-            double[] foodCost = new double[foodCount];
             double totalCost = 0;
-            double tax;
-            double tip;
 
-            for (int foodIndex = 0; foodIndex < foodCount; foodIndex++)
+            for (int foodIndex = 0; foodIndex < 5; foodIndex++)
             {
-                foodCost[foodIndex] = double.Parse(input.ReadLine());
-                totalCost += foodCost[foodIndex]; // 이 부분 아래에 for문을 한번 더 써서 실행했는데, 쓸데없이 여러번 써서 병합
+                double foodCost = double.Parse(input.ReadLine());
+                totalCost += foodCost;
             }
-
-            tax = totalCost * 0.05;
-            totalCost += tax; // 음식 값 + 세금
-
             double tipPercent = double.Parse(input.ReadLine());
-            tip = totalCost * tipPercent / 100;
-            totalCost += tip; // 음식 값 + 세금 + 팁
-            totalCost = System.Math.Round(totalCost, 2);
+
+            double tax = totalCost * 0.05;
+            double tip = (totalCost + tax) * tipPercent / 100;
+            totalCost = Math.Round(totalCost + tax + tip, 2);
+
             return totalCost;
         }
 
@@ -33,28 +28,18 @@ namespace Lab3
             double individualCost;
             uint payerCount = uint.Parse(input.ReadLine());
 
-            individualCost = totalCost / payerCount;
+            individualCost = Math.Round(totalCost / payerCount, 2);
 
-            individualCost = System.Math.Round(individualCost, 2);
             return individualCost;
         }
 
         public static uint CalculatePayerCount(StreamReader input, double totalCost)
         {
-            double payerCount = 0;
+            double payerCount;
             double individualCost = double.Parse(input.ReadLine());
 
-            if (individualCost < 0)
-            {
-                individualCost = double.Parse(input.ReadLine());
-            }
+            payerCount = Math.Ceiling(totalCost / individualCost);
 
-            else
-            {
-                payerCount = totalCost / individualCost;
-            }
-
-            payerCount = System.Math.Ceiling(payerCount);
             return (uint)payerCount;
         }
     }
