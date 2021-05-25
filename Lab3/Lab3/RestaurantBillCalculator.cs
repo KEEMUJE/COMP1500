@@ -11,6 +11,7 @@ namespace Lab3
 
             for (int foodIndex = 0; foodIndex < 5; foodIndex++)
             {
+                // 원래 double형 배열 foodCost에 값을 저장했지만 for문이 한번 돌때 마다, totalCost에 값을 저장하며 더하기 때문에 배열 필요X
                 double foodCost = double.Parse(input.ReadLine());
                 totalCost += foodCost;
             }
