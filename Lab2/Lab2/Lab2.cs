@@ -10,8 +10,7 @@ namespace Lab2
 
         public static double GetAverage(int num1, int num2, int num3, int num4)
         {
-            double sum = GetSum(num1, num2, num3, num4);
-            return sum / 4;
+            return GetSum(num1, num2, num3, num4) / 4.0;
         }
 
         public static int Multiply(int num1, int num2)
