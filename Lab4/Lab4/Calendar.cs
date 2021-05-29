@@ -21,11 +21,11 @@
             {
                 return 30;
             }
-            else if ((year % 400 == 0 && year % 100 == 0 && year % 4 == 0 && month == 2) || (year % 4 == 0 && month == 2))
+            else if ((year % 400 == 0 && year % 100 == 0 && year % 4 == 0 && month == 2) || (year % 4 == 0 && year % 100 != 0) || (year % 4 == 0 && month == 2))
             {
                 return 29;
             }
-            else
+            else // 위 모든 불리언 표현식이 거짓이라면 윤년이 아니다.
             {
                 return 28;
             }
