@@ -9,19 +9,19 @@ namespace Assignment1
         {
             long[] integerArrays = new long[5];
 
-            for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
+            for (int i = 0; i < 5; i++)
             {
-                integerArrays[arrayNumbers] = long.Parse(input.ReadLine());
+                integerArrays[i] = long.Parse(input.ReadLine());
             }
 
             width = width < 10 ? 10 : width;
             output.WriteLine($"{{0,{width}}} {{1,{width}}} {{2,{width}}}", "oct", "dec", "hex");
 
-            for (int outputNumbers = 0; outputNumbers < 5; outputNumbers++)
+            for (int i = 0; i < 5; i++)
             {
-                output.Write($"{{0, {width}}}", Convert.ToString(integerArrays[outputNumbers], 8));
-                output.Write($"{{0, {width + 1}}}", integerArrays[outputNumbers]);
-                output.Write($"{{0, {width + 1}}}", integerArrays[outputNumbers].ToString("X"));
+                output.Write($"{{0, {width}}}", Convert.ToString(integerArrays[i], 8));
+                output.Write($"{{0, {width + 1}}}", integerArrays[i]);
+                output.Write($"{{0, {width + 1}}}", integerArrays[i].ToString("X"));
                 output.WriteLine("");
             }
         }
@@ -29,22 +29,26 @@ namespace Assignment1
         public static void PrintStats(StreamReader input, StreamWriter output)
         {
             double[] doubleArrays = new double[5];
+            double min = 0.0;
+            double max = 0.0;
+            double sum = 0.0;
 
-            for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
+            for (int i = 0; i < 5; i++)
             {
-                doubleArrays[arrayNumbers] = double.Parse(input.ReadLine());
+                doubleArrays[i] = double.Parse(input.ReadLine());
+                min = min < doubleArrays[i] ? min : doubleArrays[i];
+                max = max > doubleArrays[i] ? max : doubleArrays[i];
+                sum += doubleArrays[i];
             }
-            for (int arrayNumbers = 0; arrayNumbers < 5; arrayNumbers++)
+            for (int i = 0; i < 5; i++)
             {
-                output.WriteLine("{0,25}", doubleArrays[arrayNumbers].ToString("f3"));
+                output.WriteLine("{0,25}", doubleArrays[i].ToString("f3"));
             }
-
-            Array.Sort(doubleArrays);
-            double doubleArraysSum = doubleArrays[0] + doubleArrays[1] + doubleArrays[2] + doubleArrays[3] + doubleArrays[4];
-            output.WriteLine("{0, -3}{1, 22:f3}", "Min", doubleArrays[1]);
-            output.WriteLine("{0, -3}{1, 22:f3}", "Max", doubleArrays[4]);
-            output.WriteLine("{0, -3}{1, 22:f3}", "Sum", doubleArraysSum);
-            output.WriteLine("{0, -7}{1, 18:f3}", "Average", doubleArraysSum / 5);
+            double average = sum / 5.0;
+            output.WriteLine("{0, -3}{1, 22:f3}", "Min", min);
+            output.WriteLine("{0, -3}{1, 22:f3}", "Max", max);
+            output.WriteLine("{0, -3}{1, 22:f3}", "Sum", sum);
+            output.WriteLine("{0, -7}{1, 18:f3}", "Average", average);
         }
     }
 }
