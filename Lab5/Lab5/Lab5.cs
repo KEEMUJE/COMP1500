@@ -7,26 +7,28 @@ namespace Lab5
         public static bool TryFixData(uint[] usersPerDay, double[] revenuePerDay)
         {
             int length = revenuePerDay.Length;
+            double[] fixRevenue = new double[length];
 
             for (int i = 0; i < length; i++)
             {
                 if (usersPerDay[i] <= 10)
                 {
-                    Math.Round(revenuePerDay[i] = usersPerDay[i] / 2.0, 2);
+                    revenuePerDay[i] = usersPerDay[i] / 2.0;
                 }
                 else if (usersPerDay[i] <= 100)
                 {
-                    Math.Round(revenuePerDay[i] = (16 * usersPerDay[i] / 5.0) - 27, 2);
+                    revenuePerDay[i] = (16 * usersPerDay[i] / 5.0) - 27;
                 }
                 else if (usersPerDay[i] <= 1000)
                 {
-                    Math.Round(revenuePerDay[i] = (usersPerDay[i] * usersPerDay[i] / 4.0) - (2 * usersPerDay[i]) - 2007, 2);
+                    revenuePerDay[i] = (usersPerDay[i] * usersPerDay[i] / 4.0) - (2 * usersPerDay[i]) - 2007;
                 }
                 else
                 {
-                    Math.Round(revenuePerDay[i] = 245743 + (usersPerDay[i] / 4.0), 2);
+                    revenuePerDay[i] = 245743 + (usersPerDay[i] / 4.0);
                 }
             }
+
             return false;
         }
 
