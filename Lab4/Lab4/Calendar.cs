@@ -21,7 +21,7 @@
             {
                 return 30;
             }
-            else if ((month == 2 && year % 4 == 0 && year % 100 == 0 && year % 400 == 0) || (month == 2 && year % 4 == 0 && year % 100 != 0))
+            else if (month == 2 && (year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
             {
                 return 29;
             }
