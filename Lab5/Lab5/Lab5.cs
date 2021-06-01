@@ -41,6 +41,11 @@ namespace Lab5
                 }
             }
 
+            if (usersPerDay.Length != revenuePerDay.Length)
+            {
+                return false;
+            }
+
             for (int i = 0; i < length; i++)
             {
                 if (bArray[i] == true)
@@ -54,12 +59,58 @@ namespace Lab5
 
         public static int GetInvalidEntryCount(uint[] usersPerDay, double[] revenuePerDay)
         {
-            return -1;
+            int wrongElement = 0;
+            int length = revenuePerDay.Length;
+            double[] fixRevenue = new double[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                fixRevenue[i] = revenuePerDay[i];
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                if (usersPerDay[i] <= 10)
+                {
+                    fixRevenue[i] = Math.Round(usersPerDay[i] / 2.0, 2);
+                }
+                else if (usersPerDay[i] <= 100)
+                {
+                    fixRevenue[i] = Math.Round((16 * usersPerDay[i] / 5.0) - 27, 2);
+                }
+                else if (usersPerDay[i] <= 1000)
+                {
+                    fixRevenue[i] = Math.Round((usersPerDay[i] * usersPerDay[i] / 4.0) - (2 * usersPerDay[i]) - 2007, 2);
+                }
+                else
+                {
+                    fixRevenue[i] = Math.Round(245743 + (usersPerDay[i] / 4.0), 2);
+                }
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                if (fixRevenue[i] != revenuePerDay[i])
+                {
+                    wrongElement += 1;
+                }
+                if (revenuePerDay.Length != usersPerDay.Length)
+                {
+                    return -1;
+                }
+            }
+            return wrongElement;
         }
 
         public static double CalculateTotalRevenue(double[] revenuePerDay, uint start, uint end)
         {
-            return 0.0;
+            double totalRevenue = 0;
+
+            for (uint i = start; i < end + 1; i++)
+            {
+                totalRevenue += revenuePerDay[i];
+            }
+            return totalRevenue;
         }
     }
 }
