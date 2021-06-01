@@ -15,6 +15,7 @@ namespace Lab5
             {
                 return false;
             }
+
             for (int i = 0; i < rLength; i++)
             {
                 fixRevenue[i] = revenuePerDay[i];
@@ -26,30 +27,25 @@ namespace Lab5
                 {
                     revenuePerDay[i] = Math.Round(usersPerDay[i] / 2.0, 2);
                 }
+
                 else if (usersPerDay[i] <= 100)
                 {
                     revenuePerDay[i] = Math.Round((16 * usersPerDay[i] / 5.0) - 27, 2);
                 }
+
                 else if (usersPerDay[i] <= 1000)
                 {
                     revenuePerDay[i] = Math.Round((usersPerDay[i] * usersPerDay[i] / 4.0) - (2 * usersPerDay[i]) - 2007, 2);
                 }
+
                 else
                 {
                     revenuePerDay[i] = Math.Round(245743 + (usersPerDay[i] / 4.0), 2);
                 }
 
-
                 if (fixRevenue[i] != revenuePerDay[i])
                 {
                     bArray[i] = true;
-                }
-            }
-
-            for (int i = 0; i < rLength; i++)
-            {
-                if (bArray[i] == true)
-                {
                     return true;
                 }
             }
@@ -80,14 +76,17 @@ namespace Lab5
                 {
                     fixRevenue[i] = Math.Round(usersPerDay[i] / 2.0, 2);
                 }
+
                 else if (usersPerDay[i] <= 100)
                 {
                     fixRevenue[i] = Math.Round((16 * usersPerDay[i] / 5.0) - 27, 2);
                 }
+
                 else if (usersPerDay[i] <= 1000)
                 {
                     fixRevenue[i] = Math.Round((usersPerDay[i] * usersPerDay[i] / 4.0) - (2 * usersPerDay[i]) - 2007, 2);
                 }
+
                 else
                 {
                     fixRevenue[i] = Math.Round(245743 + (usersPerDay[i] / 4.0), 2);
@@ -101,6 +100,7 @@ namespace Lab5
                     wrongElement += 1;
                 }
             }
+
             return wrongElement;
         }
 
@@ -118,6 +118,7 @@ namespace Lab5
             {
                 totalRevenue += revenuePerDay[i];
             }
+
             return totalRevenue;
         }
     }
