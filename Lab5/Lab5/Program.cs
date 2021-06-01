@@ -8,8 +8,8 @@ namespace Lab5
         {
             const int NUMBER_OF_DAYS = 15;
 
-            uint[] usersPerDay = new uint[NUMBER_OF_DAYS] { 0, 3, 5, 10, 34, 66, 89, 100, 101, 321, 657, 1000, 1032, 4520, 6578 };
-            double[] revenuePerDay = new double[NUMBER_OF_DAYS] { 0, 1.50, 2.50, 5.00, 81.80, 184.20, 257.80, 293.00, 341.25, 23111.25, 104591.25, 245993.00, 246001.00, 246873.00, 247387.50 };
+            uint[] usersPerDay = new uint[NUMBER_OF_DAYS] { 0, 2, 7, 10, 24, 46, 99, 100, 104, 334, 666, 1000, 1022, 4382, 6678 };
+            double[] revenuePerDay = new double[NUMBER_OF_DAYS] { 0, 1.00, 3.50, 5.00, 49.80, 120.20, 289.80, 293.00, 489.00, 25214.00, 107550.00, 245993.00, 245998.50, 246838.50, 247412.50 };
 
             bool bFixed = Lab5.TryFixData(usersPerDay, revenuePerDay);
             Debug.Assert(!bFixed);
@@ -21,24 +21,60 @@ namespace Lab5
             bFixed = Lab5.TryFixData(usersPerDay, revenuePerDay);
             Debug.Assert(bFixed);
 
+            double[] revenuePerDayMismaching = new double[NUMBER_OF_DAYS - 1] { 0, 1.00, 3.50, 5.00, 49.80, 120.20, 289.80, 293.00, 489.00, 25214.00, 107550.00, 245993.00, 245998.50, 246838.50 };
+
+            bFixed = Lab5.TryFixData(usersPerDay, revenuePerDayMismaching);
+            Debug.Assert(!bFixed);
+
+            uint[] usersPerDayZeroLength = new uint[0];
+            double[] revenuePerDayZeroLength = new double[0];
+
+            bFixed = Lab5.TryFixData(usersPerDayZeroLength, revenuePerDay);
+            Debug.Assert(!bFixed);
+
+            bFixed = Lab5.TryFixData(usersPerDay, revenuePerDayZeroLength);
+            Debug.Assert(!bFixed);
+            bFixed = Lab5.TryFixData(usersPerDayZeroLength, revenuePerDayZeroLength);
+            Debug.Assert(!bFixed);
+
             int numInvalidEntries = Lab5.GetInvalidEntryCount(usersPerDay, revenuePerDay);
-            Debug.Assert(numInvalidEntries == 0);
+            Debug.Assert(0 == numInvalidEntries);
 
             revenuePerDay[0] = 10000.2;
             revenuePerDay[6] = 156;
             revenuePerDay[11] = 45628.34;
 
             numInvalidEntries = Lab5.GetInvalidEntryCount(usersPerDay, revenuePerDay);
-            Debug.Assert(numInvalidEntries == 3);
+            Debug.Assert(3 == numInvalidEntries);
 
-            double totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 0, 5);
-            Debug.Assert(totalRevenue == 10275.2);
+            numInvalidEntries = Lab5.GetInvalidEntryCount(usersPerDay, revenuePerDayMismaching);
+            Debug.Assert(-1 == numInvalidEntries);
 
-            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 10, 14);
-            Debug.Assert(totalRevenue == 890481.09);
+            numInvalidEntries = Lab5.GetInvalidEntryCount(usersPerDayZeroLength, revenuePerDayZeroLength);
+            Debug.Assert(0 == numInvalidEntries);
 
-            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 0, 14);
-            Debug.Assert(totalRevenue == 924657.79);
+            Lab5.TryFixData(usersPerDay, revenuePerDay);
+
+            double totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 0, 4);
+            Debug.Assert(59.30 == totalRevenue);
+
+            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 5, 5);
+            Debug.Assert(120.20 == totalRevenue);
+
+            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 4, 6);
+            Debug.Assert(459.80 == totalRevenue);
+
+            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDayZeroLength, 0, 4);
+            Debug.Assert(-1 == totalRevenue);
+
+            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 4, 0);
+            Debug.Assert(-1 == totalRevenue);
+
+            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, 0, NUMBER_OF_DAYS);
+            Debug.Assert(-1 == totalRevenue);
+
+            totalRevenue = Lab5.CalculateTotalRevenue(revenuePerDay, NUMBER_OF_DAYS, 0);
+            Debug.Assert(-1 == totalRevenue);
         }
     }
 }

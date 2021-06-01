@@ -6,16 +6,21 @@ namespace Lab5
     {
         public static bool TryFixData(uint[] usersPerDay, double[] revenuePerDay)
         {
-            int length = revenuePerDay.Length;
-            double[] fixRevenue = new double[length];
-            bool[] bArray = new bool[length];
+            int uLength = usersPerDay.Length;
+            int rLength = revenuePerDay.Length;
+            double[] fixRevenue = new double[rLength];
+            bool[] bArray = new bool[rLength];
 
-            for (int i = 0; i < length; i++)
+            if (uLength != rLength)
+            {
+                return false;
+            }
+            for (int i = 0; i < rLength; i++)
             {
                 fixRevenue[i] = revenuePerDay[i];
             }
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < rLength; i++)
             {
                 if (usersPerDay[i] <= 10)
                 {
@@ -41,7 +46,7 @@ namespace Lab5
                 }
             }
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < rLength; i++)
             {
                 if (bArray[i] == true)
                 {
@@ -55,15 +60,21 @@ namespace Lab5
         public static int GetInvalidEntryCount(uint[] usersPerDay, double[] revenuePerDay)
         {
             int wrongElement = 0;
-            int length = revenuePerDay.Length;
-            double[] fixRevenue = new double[length];
+            int uLength = usersPerDay.Length;
+            int rLength = revenuePerDay.Length;
+            double[] fixRevenue = new double[rLength];
 
-            for (int i = 0; i < length; i++)
+            if (uLength != rLength)
+            {
+                return -1;
+            }
+
+            for (int i = 0; i < rLength; i++)
             {
                 fixRevenue[i] = revenuePerDay[i];
             }
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < rLength; i++)
             {
                 if (usersPerDay[i] <= 10)
                 {
@@ -83,7 +94,7 @@ namespace Lab5
                 }
             }
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < rLength; i++)
             {
                 if (fixRevenue[i] != revenuePerDay[i])
                 {
@@ -96,19 +107,11 @@ namespace Lab5
         public static double CalculateTotalRevenue(double[] revenuePerDay, uint start, uint end)
         {
             double totalRevenue = 0;
-            uint numberStation;
 
-            if (start < 0 || end > 14 || revenuePerDay.Length == 0)
+            if (start < 0 || end > 14 || revenuePerDay.Length == 0 || start > end)
             {
                 return -1;
             }
-            else if (start > end)
-            {
-                numberStation = start;
-                start = end;
-                end = numberStation;
-            }
-
 
             for (uint i = start; i < end + 1; i++)
             {
