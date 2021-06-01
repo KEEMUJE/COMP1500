@@ -106,6 +106,11 @@ namespace Lab5
         {
             double totalRevenue = 0;
 
+            if (start < 0 || end > 14 || revenuePerDay.Length == 0)
+            {
+                return -1;
+            }
+
             for (uint i = start; i < end + 1; i++)
             {
                 totalRevenue += revenuePerDay[i];
