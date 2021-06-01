@@ -109,7 +109,7 @@ namespace Lab5
             int rLength = revenuePerDay.Length - 1;
             double totalRevenue = 0;
 
-            if (start < 0 || end > rLength || revenuePerDay.Length == 0 || start > end || revenuePerDay[0] > revenuePerDay[rLength] || revenuePerDay[rLength] > revenuePerDay[rLength])
+            if (start < 0 || end > rLength || revenuePerDay.Length == 0 || start > end || start <= end || revenuePerDay[0] > revenuePerDay[rLength] || revenuePerDay[rLength] > revenuePerDay[rLength])
             {
                 return -1;
             }
