@@ -41,11 +41,6 @@ namespace Lab5
                 }
             }
 
-            if (usersPerDay.Length != revenuePerDay.Length)
-            {
-                return false;
-            }
-
             for (int i = 0; i < length; i++)
             {
                 if (bArray[i] == true)
@@ -93,10 +88,6 @@ namespace Lab5
                 if (fixRevenue[i] != revenuePerDay[i])
                 {
                     wrongElement += 1;
-                }
-                if (revenuePerDay.Length != usersPerDay.Length)
-                {
-                    return -1;
                 }
             }
             return wrongElement;
