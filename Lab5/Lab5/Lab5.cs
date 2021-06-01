@@ -46,6 +46,13 @@ namespace Lab5
                 if (fixRevenue[i] != revenuePerDay[i])
                 {
                     bArray[i] = true;
+                }
+            }
+
+            for (int i = 0; i < rLength; i++)
+            {
+                if (bArray[i] == true)
+                {
                     return true;
                 }
             }
