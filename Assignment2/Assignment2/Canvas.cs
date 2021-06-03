@@ -48,7 +48,7 @@ namespace Assignment2
                 {
                     for (int j = 0; j < i + 1; j++)
                     {
-                        // 왜 이러지?
+                        // 여기부터 할 차례!
                     }
                 }
 
