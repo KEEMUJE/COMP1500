@@ -1,10 +1,10 @@
-﻿using System;
-namespace Assignment2
+﻿namespace Assignment2
 {
-    public class EShape
+    public enum EShape
     {
-        public EShape()
-        {
-        }
-    }
+        Rectangle,
+        IsoscelesRightTriangle,
+        IsoscelesTriangle,
+        Circle
+    };
 }
