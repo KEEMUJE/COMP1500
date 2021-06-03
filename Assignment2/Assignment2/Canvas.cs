@@ -36,7 +36,7 @@ namespace Assignment2
                 }
 
                 PrintLow(canvas, finalWidth, finalHeight);
-
+                
                 return canvas;
             }
 
@@ -48,7 +48,7 @@ namespace Assignment2
                 {
                     for (int j = 0; j < i + 1; j++)
                     {
-                        // 여기부터 할 차례!
+                        // 여기부터 할 차례! I can do it.
                     }
                 }
 
