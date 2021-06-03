@@ -6,66 +6,56 @@ namespace Assignment2
     {
         public static char[,] Draw(uint width, uint height, EShape shape)
         {
-            width += 4;
-            height += 4;
+            uint finalHeight = height + 4;
+            uint finalWidth = width + 4;
+            char[,] canvas = new char[finalHeight, finalWidth];
 
-            char[,] canvas = new char[width, height];
-
-            if (width == 0 || height == 0)
+            if (height == 0 || width == 0)
             {
                 Array.Clear(canvas, 0, canvas.Length);
+
                 return canvas;
             }
 
             if (shape == EShape.Rectangle)
             {
-                PrintTop(width);
-
-                for (int i = 0; i < height -4; i++)
-                {
-                    Console.Write('|');
-                    Console.Write(' ');
-                    for (int j = 0; j < width - 4; j++)
-                    {
-                        Console.Write('*');
-                    }
-                    Console.Write(' ');
-                    Console.Write("|\n");
-                }
-
-                PrintLower(width);
-
-                return canvas;
-            }
-
-            if (shape == EShape.IsoscelesRightTriangle && width == height)
-            {
-                PrintTop(width);
+                PrintTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
                 {
-                    Console.Write('|');
-                    Console.Write(' ');
+                    canvas[i + 2, 0] = '|';
+                    canvas[i + 2, 1] = ' ';
 
-                    for (int j = 0; j < width; j++)
+                    for (int j = 0; j < finalWidth; j++)
                     {
-                        canvas[j, j] = '*';
+                        canvas[i + 2, j] = '*';
                     }
 
-                    Console.Write(' ');
-                    Console.Write("|\n");
+                    canvas[i + 2, width + 2] = ' ';
+                    canvas[i + 2, width + 3] = '|';
                 }
 
-                PrintLower(width);
+                PrintLow(canvas, finalWidth, finalHeight);
 
                 return canvas;
             }
 
-            else
+            else if (shape == EShape.IsoscelesRightTriangle && height == width)
             {
-                Array.Clear(canvas, 0, canvas.Length);
-                return canvas;
+                PrintTop(canvas, finalWidth);
+
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < i + 1; j++)
+                    {
+                        // 여기부터 할 차례!
+                    }
+                }
+
+                PrintLow(canvas, finalWidth, finalHeight);
             }
+
+            return canvas;
         }
 
         public static bool IsShape(char[,] canvas, EShape shape)
@@ -73,37 +63,37 @@ namespace Assignment2
             return false;
         }
 
-        public static void PrintTop(uint width)
+        private static void PrintTop(char[,] top, uint width)
         {
             for (int i = 0; i < width; i++)
             {
-                Console.Write('-');
+                top[0, i] = '-';
             }
 
-            Console.Write("\n|");
+            top[1, 0] = '|';
 
             for (int i = 0; i < width - 2; i++)
             {
-                Console.Write(' ');
+                top[1, i + 1] = ' ';
             }
 
-            Console.Write("|\n");
+            top[1, width - 1] = '|';
         }
 
-        public static void PrintLower(uint width)
+        private static void PrintLow(char[,] low, uint width, uint height)
         {
-            Console.Write("\n|");
+            low[height - 2, 0] = '|';
 
             for (int i = 0; i < width - 2; i++)
             {
-                Console.Write(' ');
+                low[height - 2, i + 1] = ' ';
             }
 
-            Console.Write("|\n");
+            low[height - 2, width - 1] = '|';
 
             for (int i = 0; i < width; i++)
             {
-                Console.Write('-');
+                low[height - 1, i] = '-';
             }
         }
     }
