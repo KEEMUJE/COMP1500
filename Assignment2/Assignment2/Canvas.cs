@@ -26,9 +26,9 @@ namespace Assignment2
                     canvas[i + 2, 0] = '|';
                     canvas[i + 2, 1] = ' ';
 
-                    for (int j = 0; j < finalWidth; j++)
+                    for (int j = 0; j < finalWidth - 2; j++)
                     {
-                        canvas[i + 2, j] = '*';
+                        canvas[i + 2, j + 2] = '*';
                     }
 
                     canvas[i + 2, width + 2] = ' ';
@@ -36,23 +36,61 @@ namespace Assignment2
                 }
 
                 PrintLow(canvas, finalWidth, finalHeight);
-
-                return canvas;
             }
 
-            else if (shape == EShape.IsoscelesRightTriangle && height == width)
+            else if (shape == EShape.IsoscelesTriangle && width == height * 2 - 1) // 이등변 삼각형
             {
                 PrintTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
                 {
-                    for (int j = 0; j < i + 1; j++)
+                    canvas[i + 2, 0] = '|';
+
+                    for (int j = 0; j < finalWidth - 1; j++)
                     {
-                        // 여기부터 할 차례!
+                        canvas[i + 2, j + 1] = ' ';
                     }
+
+                    canvas[i + 2, width + 3] = '|';
                 }
 
                 PrintLow(canvas, finalWidth, finalHeight);
+
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < 2 * i + 1; j++)
+                    {
+
+                    }
+                }
+            }
+
+            else if (shape == EShape.IsoscelesRightTriangle && height == width) // 직각 이등변 삼각형
+            {
+
+                PrintTop(canvas, finalWidth);
+
+                for (int i = 0; i < height; i++)
+                {
+                    canvas[i + 2, 0] = '|';
+
+                    for (int j = 0; j < finalWidth - 1; j++)
+                    {
+                        canvas[i + 2, j + 1] = ' ';
+                    }
+
+                    canvas[i + 2, width + 3] = '|';
+                }
+
+                PrintLow(canvas, finalWidth, finalHeight);
+
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < i + 1; j++)
+                    {
+                        canvas[i + 2, j + 2] = '*';
+                    }
+                }
             }
 
             return canvas;
