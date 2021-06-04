@@ -56,11 +56,11 @@ namespace Assignment2
 
                 PrintLow(canvas, finalWidth, finalHeight);
 
-                for (int i = 0; i < height; i++)
+                for (uint i = 0; i < height; i++)
                 {
-                    for (int j = 0; j < 2 * i + 1; j++)
+                    for (uint j = 0; j < width - (2 * i); j++)
                     {
-
+                        canvas[height + 1 - i, 2 + j + i] = '*';
                     }
                 }
             }

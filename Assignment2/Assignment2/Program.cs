@@ -9,7 +9,7 @@ namespace Assignment2
         {
             char[,] canvas = Canvas.Draw(21, 21, EShape.Circle);
             printCanvas(canvas);
-            
+
             Debug.Assert(Canvas.IsShape(canvas, EShape.Circle));
             Debug.Assert(!Canvas.IsShape(canvas, EShape.Rectangle));
             Debug.Assert(!Canvas.IsShape(canvas, EShape.IsoscelesRightTriangle));
@@ -41,7 +41,7 @@ namespace Assignment2
         }
 
         // canvas를 콘솔 창에 출력해주는 도우미 함수
-        public static void printCanvas(char[,] canvas)
+        private static void printCanvas(char[,] canvas)
         {
             for (int i = 0; i < canvas.GetLength(0); i++)
             {
