@@ -12,7 +12,6 @@ namespace Assignment2
 
             if (height == 0 || width == 0)
             {
-                canvas = new char[0, 0];
                 return canvas;
             }
 
@@ -130,11 +129,6 @@ namespace Assignment2
                 printLow(canvas, finalWidth, finalHeight);
             }
 
-            else
-            {
-                Array.Clear(canvas, 0, canvas.Length);
-            }
-
             return canvas;
         }
 
@@ -162,7 +156,6 @@ namespace Assignment2
 
             if (width == 0 || height == 0)
             {
-                Array.Clear(canvas, 0, canvas.Length);
                 return false;
             }
 
