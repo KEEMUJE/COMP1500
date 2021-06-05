@@ -38,7 +38,7 @@ namespace Assignment2
                 PrintLow(canvas, finalWidth, finalHeight);
             }
 
-            else if (shape == EShape.IsoscelesRightTriangle && height == width) // 직각 이등변 삼각형
+            else if (shape == EShape.IsoscelesRightTriangle && width == height) // 직각 이등변 삼각형
             {
 
                 PrintTop(canvas, finalWidth);
@@ -95,9 +95,22 @@ namespace Assignment2
 
             else if (shape == EShape.Circle && width == height && width % 2 != 0)
             {
+                
                 int radius = (int)(Math.Truncate(width / 2.0 * 1) / 1);
 
-                PrintTop(canvas, width);
+                PrintTop(canvas, finalWidth);
+
+                for (int i = 0; i < height; i++)
+                {
+                    canvas[i + 2, 0] = '|';
+
+                    for (int j = 0; j < finalWidth - 1; j++)
+                    {
+                        canvas[i + 2, j + 1] = ' ';
+                    }
+
+                    canvas[i + 2, width + 3] = '|';
+                }
 
                 for (int i = -radius; i <= radius; i++)
                 {
@@ -105,17 +118,22 @@ namespace Assignment2
                     {
                         if (i*i + j*j <= radius * radius)
                         {
-                            //여기
+                            canvas[i + radius + 2, j + radius + 2] = '*';
                         }
 
                         else
                         {
-                            canvas[i * i, j * j] = ' ';
+                            canvas[i + radius + 2, j + radius + 2] = ' ';
                         }
                     }
                 }
 
-                PrintLow(canvas, width, height);
+                PrintLow(canvas, finalWidth, finalHeight);
+            }
+
+            else
+            {
+                Array.Clear(canvas, 0, canvas.Length);
             }
 
             return canvas;
@@ -123,6 +141,55 @@ namespace Assignment2
 
         public static bool IsShape(char[,] canvas, EShape shape)
         {
+            uint width = (uint)canvas.GetLength(1) - 4;
+            uint height = (uint)canvas.GetLength(0) - 4;
+            char[,] canvas2 = new char[height, width];
+
+
+            canvas2 = Draw(width, height, shape);
+
+            bool bIsEqual = true;
+
+            for (int i = 0; i < height + 4; i++)
+            {
+                for (int j = 0; j < width + 4; j++)
+                {
+                    if (canvas[i, j] != canvas2[i, j])
+                    {
+                        bIsEqual = false;
+                    }
+                }
+            }
+
+            if (width == 0 || height == 0)
+            {
+                Array.Clear(canvas, 0, canvas.Length);
+                return false;
+            }
+
+            if (bIsEqual == true)
+            {
+                if (shape == EShape.Rectangle)
+                {
+                    return true;
+                }
+
+                else if (shape == EShape.IsoscelesRightTriangle)
+                {
+                    return true;
+                }
+
+                else if (shape == EShape.IsoscelesTriangle)
+                {
+                    return true;
+                }
+
+                else if (shape == EShape.Circle)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
