@@ -12,6 +12,31 @@ namespace Assignment2
 
             if (height == 0 || width == 0)
             {
+                canvas = new char[0, 0];
+                return canvas;
+            }
+
+            else if (shape == EShape.IsoscelesRightTriangle && width != height)
+            {
+                canvas = new char[0, 0];
+                return canvas;
+            }
+
+            else if (shape == EShape.IsoscelesTriangle && width != (height * 2) - 1)
+            {
+                canvas = new char[0, 0];
+                return canvas;
+            }
+
+            else if (shape == EShape.Circle && width != height)
+            {
+                canvas = new char[0, 0];
+                return canvas;
+            }
+
+            else if (shape == EShape.Circle && width == height && width % 2 == 0)
+            {
+                canvas = new char[0, 0];
                 return canvas;
             }
 
@@ -114,7 +139,7 @@ namespace Assignment2
                 {
                     for (int j = -radius; j <= radius; j++)
                     {
-                        if (i*i + j*j <= radius * radius)
+                        if (i * i + j * j <= radius * radius)
                         {
                             canvas[i + radius + 2, j + radius + 2] = '*';
                         }
