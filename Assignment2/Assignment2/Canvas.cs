@@ -13,10 +13,6 @@ namespace Assignment2
             if (height == 0 || width == 0)
             {
                 canvas = new char[0, 0];
-<<<<<<< HEAD
-=======
-                return canvas;
->>>>>>> 36c190bdee772026ae413c44f6708332a1f7f144
             }
 
             if (shape == EShape.Rectangle)
@@ -40,17 +36,9 @@ namespace Assignment2
                 printLow(canvas, finalWidth, finalHeight);
             }
 
-<<<<<<< HEAD
             if (shape == EShape.IsoscelesRightTriangle && width == height) // 직각 이등변 삼각형
-=======
-            if (shape == EShape.IsoscelesRightTriangle && width != height) // 직각 이등변 삼각형
->>>>>>> 36c190bdee772026ae413c44f6708332a1f7f144
             {
-                return canvas;
-            }
 
-            else if (width == height)
-            {
                 printTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
@@ -76,16 +64,7 @@ namespace Assignment2
                 }
             }
 
-<<<<<<< HEAD
             if (shape == EShape.IsoscelesTriangle && width == height * 2 - 1) // 이등변 삼각형
-=======
-            if (shape == EShape.IsoscelesTriangle && width != height * 2 - 1) // 이등변 삼각형
-            {
-                return canvas;
-            }
-
-            else if (width == height * 2 - 1)
->>>>>>> 36c190bdee772026ae413c44f6708332a1f7f144
             {
                 printTop(canvas, finalWidth);
 
@@ -112,17 +91,9 @@ namespace Assignment2
                 }
             }
 
-<<<<<<< HEAD
             if (shape == EShape.Circle && width == height && width % 2 != 0)
-=======
-            if (shape == EShape.Circle && width != height || width % 2 == 0)
             {
-                return canvas;
-            }
 
-            else if (width == height && width % 2 != 0)
->>>>>>> 36c190bdee772026ae413c44f6708332a1f7f144
-            {
                 int radius = (int)(Math.Truncate(width / 2.0 * 1) / 1);
 
                 printTop(canvas, finalWidth);
@@ -166,6 +137,7 @@ namespace Assignment2
             uint width = (uint)canvas.GetLength(1) - 4;
             uint height = (uint)canvas.GetLength(0) - 4;
             char[,] canvas2 = new char[height, width];
+
 
             canvas2 = Draw(width, height, shape);
 
