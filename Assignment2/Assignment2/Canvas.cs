@@ -12,14 +12,13 @@ namespace Assignment2
 
             if (height == 0 || width == 0)
             {
-                Array.Clear(canvas, 0, canvas.Length);
-
+                canvas = new char[0, 0];
                 return canvas;
             }
 
             if (shape == EShape.Rectangle)
             {
-                PrintTop(canvas, finalWidth);
+                printTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
                 {
@@ -35,13 +34,13 @@ namespace Assignment2
                     canvas[i + 2, width + 3] = '|';
                 }
 
-                PrintLow(canvas, finalWidth, finalHeight);
+                printLow(canvas, finalWidth, finalHeight);
             }
 
             else if (shape == EShape.IsoscelesRightTriangle && width == height) // 직각 이등변 삼각형
             {
 
-                PrintTop(canvas, finalWidth);
+                printTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
                 {
@@ -55,7 +54,7 @@ namespace Assignment2
                     canvas[i + 2, width + 3] = '|';
                 }
 
-                PrintLow(canvas, finalWidth, finalHeight);
+                printLow(canvas, finalWidth, finalHeight);
 
                 for (int i = 0; i < height; i++)
                 {
@@ -68,7 +67,7 @@ namespace Assignment2
 
             else if (shape == EShape.IsoscelesTriangle && width == height * 2 - 1) // 이등변 삼각형
             {
-                PrintTop(canvas, finalWidth);
+                printTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
                 {
@@ -82,7 +81,7 @@ namespace Assignment2
                     canvas[i + 2, width + 3] = '|';
                 }
 
-                PrintLow(canvas, finalWidth, finalHeight);
+                printLow(canvas, finalWidth, finalHeight);
 
                 for (uint i = 0; i < height; i++)
                 {
@@ -98,7 +97,7 @@ namespace Assignment2
                 
                 int radius = (int)(Math.Truncate(width / 2.0 * 1) / 1);
 
-                PrintTop(canvas, finalWidth);
+                printTop(canvas, finalWidth);
 
                 for (int i = 0; i < height; i++)
                 {
@@ -128,7 +127,7 @@ namespace Assignment2
                     }
                 }
 
-                PrintLow(canvas, finalWidth, finalHeight);
+                printLow(canvas, finalWidth, finalHeight);
             }
 
             else
@@ -193,7 +192,7 @@ namespace Assignment2
             return false;
         }
 
-        private static void PrintTop(char[,] top, uint width)
+        private static void printTop(char[,] top, uint width)
         {
             for (int i = 0; i < width; i++)
             {
@@ -210,7 +209,7 @@ namespace Assignment2
             top[1, width - 1] = '|';
         }
 
-        private static void PrintLow(char[,] low, uint width, uint height)
+        private static void printLow(char[,] low, uint width, uint height)
         {
             low[height - 2, 0] = '|';
 
