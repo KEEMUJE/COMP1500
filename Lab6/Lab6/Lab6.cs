@@ -25,7 +25,7 @@ namespace Lab6
             return rotated;
         }
 
-        public static int[,] TransformArray(int[,] data, EMode mode)
+        public static void TransformArray(int[,] data, EMode mode)
         {
             int[,] copyData = new int[data.GetLength(0), data.GetLength(1)];
 
@@ -78,8 +78,6 @@ namespace Lab6
                 default:
                     break;
             }
-
-            return data;
         }
     }
 }
