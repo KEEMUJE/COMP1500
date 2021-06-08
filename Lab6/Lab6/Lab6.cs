@@ -1,25 +1,17 @@
-﻿using System;
-namespace Lab6
+﻿namespace Lab6
 {
     public static class Lab6
     {
         public static int[,] Rotate90Degrees(int[,] data)
         {
             int[,] rotated = new int[data.GetLength(1), data.GetLength(0)];
-            int rotatedRow = 0;
-            int rotatedColumn = 0;
 
             for (int i = 0; i < data.GetLength(1); i++)
             {
-                rotatedColumn = 0;
-
-                for (int j = data.GetLength(0) - 1; j >= 0; j--)
+                for (int j = 0; j < data.GetLength(0); j++)
                 {
-                    rotated[rotatedRow, rotatedColumn] = data[j, i];
-                    rotatedColumn++;
+                    rotated[i, j] = data[data.GetLength(0) - 1 - j, i];
                 }
-
-                rotatedRow++;
             }
 
             return rotated;
