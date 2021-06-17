@@ -165,32 +165,26 @@ namespace Assignment2
         }
 
         public static bool IsShape(char[,] canvas, EShape shape)
-        {
-            bool bIsEqual = true;
+        {   
             uint width = (uint)canvas.GetLength(1);
             uint height = (uint)canvas.GetLength(0);
             char[,] canvas2 = new char[height, width];
 
-            if (shape == EShape.Rectangle && width == 0 || height == 0)
+            if (width == 0 || height == 0)
             {
                 return false;
             }
 
-            else if (shape == EShape.IsoscelesRightTriangle && width != height)
+            canvas2 = Draw(width - 4, height - 4, shape);
+
+            if (shape == EShape.Rectangle && width == 0 || height == 0 ||
+                shape == EShape.IsoscelesRightTriangle && width != height ||
+                shape == EShape.IsoscelesTriangle && width - 4 != (height - 4) * 2 - 1 ||
+                shape == EShape.Circle && (width != height || width % 2 == 0))
             {
                 return false;
             }
-
-            else if (shape == EShape.IsoscelesTriangle && width - 4 != (height - 4) * 2 - 1)
-            {
-                return false;
-            }
-
-            else if (shape == EShape.Circle && (width != height || width % 2 == 0))
-            {
-                return false;
-            }
-
+            
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -202,27 +196,7 @@ namespace Assignment2
                 }
             }
 
-            if (shape == EShape.Rectangle)
-            {
-                return true;
-            }
-
-            else if (shape == EShape.IsoscelesRightTriangle)
-            {
-                return true;
-            }
-
-            else if (shape == EShape.IsoscelesTriangle)
-            {
-                return true;
-            }
-
-            else if (shape == EShape.Circle)
-            {
-                return true;
-            }
-
-            return bIsEqual;
+            return true;
         }
 
         private static void printTop(char[,] top, uint width)
