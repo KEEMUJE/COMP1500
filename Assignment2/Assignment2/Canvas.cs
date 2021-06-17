@@ -171,13 +171,6 @@ namespace Assignment2
             uint height = (uint)canvas.GetLength(0);
             char[,] canvas2 = new char[height, width];
 
-            if (width == 0 || height == 0)
-            {
-                return false;
-            }
-
-            canvas2 = Draw(width - 4, height - 4, shape);
-
             if (shape == EShape.Rectangle && width == 0 || height == 0)
             {
                 return false;
@@ -204,32 +197,29 @@ namespace Assignment2
                 {
                     if (canvas[i, j] != canvas2[i, j])
                     {
-                        bIsEqual = false;
+                        return false;
                     }
                 }
             }
 
-            if (bIsEqual == true)
+            if (shape == EShape.Rectangle)
             {
-                if (shape == EShape.Rectangle)
-                {
-                    return true;
-                }
+                return true;
+            }
 
-                else if (shape == EShape.IsoscelesRightTriangle)
-                {
-                    return true;
-                }
+            else if (shape == EShape.IsoscelesRightTriangle)
+            {
+                return true;
+            }
 
-                else if (shape == EShape.IsoscelesTriangle)
-                {
-                    return true;
-                }
+            else if (shape == EShape.IsoscelesTriangle)
+            {
+                return true;
+            }
 
-                else if (shape == EShape.Circle)
-                {
-                    return true;
-                }
+            else if (shape == EShape.Circle)
+            {
+                return true;
             }
 
             return bIsEqual;
