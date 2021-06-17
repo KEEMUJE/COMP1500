@@ -52,22 +52,20 @@ namespace Assignment2
 
             if (shape == EShape.IsoscelesRightTriangle) // 직각 이등변 삼각형
             {
-                if (width == height)
-                {
-                    PrintDrawingPaper(canvas, finalWidth, finalHeight);
-
-                    for (int i = 0; i < height; i++)
-                    {
-                        for (int j = 0; j < i + 1; j++)
-                        {
-                            canvas[i + 2, j + 2] = '*';
-                        }
-                    }
-                }
-
-                else
+                if (width != height)
                 {
                     canvas = new char[0, 0];
+                    return canvas;
+                }
+
+                PrintDrawingPaper(canvas, finalWidth, finalHeight);
+
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < i + 1; j++)
+                    {
+                        canvas[i + 2, j + 2] = '*';
+                    }
                 }
 
                 return canvas;
@@ -75,22 +73,20 @@ namespace Assignment2
 
             if (shape == EShape.IsoscelesTriangle) // 이등변 삼각형
             {
-                if (width == height * 2 - 1)
-                {
-                    PrintDrawingPaper(canvas, finalWidth, finalHeight);
-
-                    for (uint i = 0; i < height; i++)
-                    {
-                        for (uint j = 0; j < width - (2 * i); j++)
-                        {
-                            canvas[height + 1 - i, 2 + j + i] = '*';
-                        }
-                    }
-                }
-
-                else
+                if (width != height * 2 - 1)
                 {
                     canvas = new char[0, 0];
+                    return canvas;
+                }
+
+                PrintDrawingPaper(canvas, finalWidth, finalHeight);
+
+                for (uint i = 0; i < height; i++)
+                {
+                    for (uint j = 0; j < width - (2 * i); j++)
+                    {
+                        canvas[height + 1 - i, 2 + j + i] = '*';
+                    }
                 }
 
                 return canvas;
@@ -98,32 +94,25 @@ namespace Assignment2
 
             if (shape == EShape.Circle)
             {
-                int radius = (int)(Math.Truncate(width / 2.0 * 1) / 1);
-
-                if (width == height && width % 2 != 0)
-                {
-                    PrintDrawingPaper(canvas, finalWidth, finalHeight);
-
-                    for (int i = -radius; i <= radius; i++)
-                    {
-                        for (int j = -radius; j <= radius; j++)
-                        {
-                            if (i * i + j * j <= radius * radius)
-                            {
-                                canvas[i + radius + 2, j + radius + 2] = '*';
-                            }
-
-                            else
-                            {
-                                canvas[i + radius + 2, j + radius + 2] = ' ';
-                            }
-                        }
-                    }
-                }
-
-                else
+                if (width != height || width % 2 == 0)
                 {
                     canvas = new char[0, 0];
+                    return canvas;
+                }
+
+                PrintDrawingPaper(canvas, finalWidth, finalHeight);
+
+                int radius = (int)(width / 2.0);
+
+                for (int i = -radius; i <= radius; i++)
+                {
+                    for (int j = -radius; j <= radius; j++)
+                    {
+                        if (i * i + j * j <= radius * radius)
+                        {
+                            canvas[i + radius + 2, j + radius + 2] = '*';
+                        }
+                    }
                 }
 
                 return canvas;
