@@ -4,6 +4,25 @@ namespace Assignment2
 {
     public static class Canvas
     {
+        static void PrintDrawingPaper(char[,] outline, uint width, uint height)
+        {
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    outline[0, j] = '-';
+                    outline[height - 1, j] = '-';
+
+                    if (i > 0 && i < height - 1)
+                    {
+                        outline[i, j] = ' ';
+                        outline[i, 0] = '|';
+                        outline[i, width - 1] = '|';
+                    }
+                }
+            }
+        }
+
         public static char[,] Draw(uint width, uint height, EShape shape)
         {
             uint finalHeight = height + 4;
@@ -16,25 +35,17 @@ namespace Assignment2
                 return canvas;
             }
 
-            if (shape == EShape.Rectangle)
+            if (shape == EShape.Rectangle) // 사각형
             {
-                printTop(canvas, finalWidth);
+                PrintDrawingPaper(canvas, finalWidth, finalHeight);
 
                 for (int i = 0; i < height; i++)
                 {
-                    canvas[i + 2, 0] = '|';
-                    canvas[i + 2, 1] = ' ';
-
-                    for (int j = 0; j < finalWidth - 2; j++)
+                    for (int j = 0; j < width; j++)
                     {
                         canvas[i + 2, j + 2] = '*';
                     }
-
-                    canvas[i + 2, width + 2] = ' ';
-                    canvas[i + 2, width + 3] = '|';
                 }
-
-                printLow(canvas, finalWidth, finalHeight);
 
                 return canvas;
             }
@@ -43,21 +54,7 @@ namespace Assignment2
             {
                 if (width == height)
                 {
-                    printTop(canvas, finalWidth);
-
-                    for (int i = 0; i < height; i++)
-                    {
-                        canvas[i + 2, 0] = '|';
-
-                        for (int j = 0; j < finalWidth - 1; j++)
-                        {
-                            canvas[i + 2, j + 1] = ' ';
-                        }
-
-                        canvas[i + 2, width + 3] = '|';
-                    }
-
-                    printLow(canvas, finalWidth, finalHeight);
+                    PrintDrawingPaper(canvas, finalWidth, finalHeight);
 
                     for (int i = 0; i < height; i++)
                     {
@@ -80,21 +77,7 @@ namespace Assignment2
             {
                 if (width == height * 2 - 1)
                 {
-                    printTop(canvas, finalWidth);
-
-                    for (int i = 0; i < height; i++)
-                    {
-                        canvas[i + 2, 0] = '|';
-
-                        for (int j = 0; j < finalWidth - 1; j++)
-                        {
-                            canvas[i + 2, j + 1] = ' ';
-                        }
-
-                        canvas[i + 2, width + 3] = '|';
-                    }
-
-                    printLow(canvas, finalWidth, finalHeight);
+                    PrintDrawingPaper(canvas, finalWidth, finalHeight);
 
                     for (uint i = 0; i < height; i++)
                     {
@@ -119,19 +102,7 @@ namespace Assignment2
 
                 if (width == height && width % 2 != 0)
                 {
-                    printTop(canvas, finalWidth);
-
-                    for (int i = 0; i < height; i++)
-                    {
-                        canvas[i + 2, 0] = '|';
-
-                        for (int j = 0; j < finalWidth - 1; j++)
-                        {
-                            canvas[i + 2, j + 1] = ' ';
-                        }
-
-                        canvas[i + 2, width + 3] = '|';
-                    }
+                    PrintDrawingPaper(canvas, finalWidth, finalHeight);
 
                     for (int i = -radius; i <= radius; i++)
                     {
@@ -148,9 +119,6 @@ namespace Assignment2
                             }
                         }
                     }
-
-                    printLow(canvas, finalWidth, finalHeight);
-
                 }
 
                 else
@@ -197,40 +165,6 @@ namespace Assignment2
             }
 
             return true;
-        }
-
-        private static void printTop(char[,] top, uint width)
-        {
-            for (int i = 0; i < width; i++)
-            {
-                top[0, i] = '-';
-            }
-
-            top[1, 0] = '|';
-
-            for (int i = 0; i < width - 2; i++)
-            {
-                top[1, i + 1] = ' ';
-            }
-
-            top[1, width - 1] = '|';
-        }
-
-        private static void printLow(char[,] low, uint width, uint height)
-        {
-            low[height - 2, 0] = '|';
-
-            for (int i = 0; i < width - 2; i++)
-            {
-                low[height - 2, i + 1] = ' ';
-            }
-
-            low[height - 2, width - 1] = '|';
-
-            for (int i = 0; i < width; i++)
-            {
-                low[height - 1, i] = '-';
-            }
         }
     }
 }
