@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Assignment2
 {
@@ -25,97 +26,79 @@ namespace Assignment2
 
         public static char[,] Draw(uint width, uint height, EShape shape)
         {
-            uint finalHeight = height + 4;
-            uint finalWidth = width + 4;
-            char[,] canvas = new char[finalHeight, finalWidth];
+            char[,] canvas = new char[height + 4, width + 4];
 
-            if (height == 0 || width == 0)
+            if (shape == EShape.Rectangle && width == 0 || height == 0 ||
+                shape == EShape.IsoscelesRightTriangle && width != height ||
+                shape == EShape.IsoscelesTriangle && width != height * 2 - 1 ||
+                shape == EShape.Circle && (width != height || width % 2 == 0))
             {
                 canvas = new char[0, 0];
                 return canvas;
             }
 
-            if (shape == EShape.Rectangle) // 사각형
+            switch (shape)
             {
-                PrintDrawingPaper(canvas, finalWidth, finalHeight);
+                case EShape.Rectangle:
+                    PrintDrawingPaper(canvas, width + 4, height + 4);
 
-                for (int i = 0; i < height; i++)
-                {
-                    for (int j = 0; j < width; j++)
+                    for (int i = 0; i < height; i++)
                     {
-                        canvas[i + 2, j + 2] = '*';
-                    }
-                }
-
-                return canvas;
-            }
-
-            if (shape == EShape.IsoscelesRightTriangle) // 직각 이등변 삼각형
-            {
-                if (width != height)
-                {
-                    canvas = new char[0, 0];
-                    return canvas;
-                }
-
-                PrintDrawingPaper(canvas, finalWidth, finalHeight);
-
-                for (int i = 0; i < height; i++)
-                {
-                    for (int j = 0; j < i + 1; j++)
-                    {
-                        canvas[i + 2, j + 2] = '*';
-                    }
-                }
-
-                return canvas;
-            }
-
-            if (shape == EShape.IsoscelesTriangle) // 이등변 삼각형
-            {
-                if (width != height * 2 - 1)
-                {
-                    canvas = new char[0, 0];
-                    return canvas;
-                }
-
-                PrintDrawingPaper(canvas, finalWidth, finalHeight);
-
-                for (uint i = 0; i < height; i++)
-                {
-                    for (uint j = 0; j < width - (2 * i); j++)
-                    {
-                        canvas[height + 1 - i, 2 + j + i] = '*';
-                    }
-                }
-
-                return canvas;
-            }
-
-            if (shape == EShape.Circle)
-            {
-                if (width != height || width % 2 == 0)
-                {
-                    canvas = new char[0, 0];
-                    return canvas;
-                }
-
-                PrintDrawingPaper(canvas, finalWidth, finalHeight);
-
-                int radius = (int)(width / 2.0);
-
-                for (int i = -radius; i <= radius; i++)
-                {
-                    for (int j = -radius; j <= radius; j++)
-                    {
-                        if (i * i + j * j <= radius * radius)
+                        for (int j = 0; j < width; j++)
                         {
-                            canvas[i + radius + 2, j + radius + 2] = '*';
+                            canvas[i + 2, j + 2] = '*';
                         }
                     }
-                }
 
-                return canvas;
+                    return canvas;
+
+                case EShape.IsoscelesRightTriangle:
+                    PrintDrawingPaper(canvas, width + 4, height + 4);
+
+                    for (int i = 0; i < height; i++)
+                    {
+                        for (int j = 0; j < i + 1; j++)
+                        {
+                            canvas[i + 2, j + 2] = '*';
+                        }
+                    }
+
+                    return canvas;
+
+                case EShape.IsoscelesTriangle:
+                    PrintDrawingPaper(canvas, width + 4, height + 4);
+
+                    for (uint i = 0; i < height; i++)
+                    {
+                        for (uint j = 0; j < width - (2 * i); j++)
+                        {
+                            canvas[height + 1 - i, 2 + j + i] = '*';
+                        }
+                    }
+
+                    return canvas;
+
+                case EShape.Circle:
+                    PrintDrawingPaper(canvas, width + 4, height + 4);
+
+                    int radius = (int)(width / 2.0);
+
+                    for (int i = -radius; i <= radius; i++)
+                    {
+                        for (int j = -radius; j <= radius; j++)
+                        {
+                            if (i * i + j * j <= radius * radius)
+                            {
+                                canvas[i + radius + 2, j + radius + 2] = '*';
+                            }
+                        }
+                    }
+
+                    return canvas;
+
+                default:
+                    Debug.Assert(EShape.InvalidValue > shape);
+                    break;
             }
 
             return canvas;
