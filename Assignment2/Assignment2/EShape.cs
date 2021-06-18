@@ -5,7 +5,6 @@
         Rectangle,
         IsoscelesRightTriangle,
         IsoscelesTriangle,
-        Circle,
-        InvalidValue
+        Circle
     };
 }
