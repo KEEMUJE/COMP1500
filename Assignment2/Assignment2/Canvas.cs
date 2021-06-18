@@ -102,13 +102,6 @@ namespace Assignment2
             uint height = (uint)canvas.GetLength(0);
             char[,] canvas2 = new char[height, width];
 
-            if (width == 0 || height == 0)
-            {
-                return false;
-            }
-
-            canvas2 = Draw(width - 4, height - 4, shape);
-
             if (shape == EShape.Rectangle && width == 0 || height == 0 ||
                 shape == EShape.IsoscelesRightTriangle && width != height ||
                 shape == EShape.IsoscelesTriangle && width - 4 != (height - 4) * 2 - 1 ||
@@ -116,7 +109,9 @@ namespace Assignment2
             {
                 return false;
             }
-            
+
+            canvas2 = Draw(width - 4, height - 4, shape);
+
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
