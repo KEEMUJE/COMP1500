@@ -7,19 +7,15 @@ namespace Assignment2
     {
         static void PrintDrawingPaper(char[,] outline, uint width, uint height)
         {
-            for (int i = 0; i < height; i++)
+            for (int i = 1; i < height - 1; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
                     outline[0, j] = '-';
                     outline[height - 1, j] = '-';
-
-                    if (i > 0 && i < height - 1)
-                    {
-                        outline[i, j] = ' ';
-                        outline[i, 0] = '|';
-                        outline[i, width - 1] = '|';
-                    }
+                    outline[i, j] = ' ';
+                    outline[i, 0] = '|';
+                    outline[i, width - 1] = '|';
                 }
             }
         }
@@ -49,7 +45,6 @@ namespace Assignment2
                             canvas[i + 2, j + 2] = '*';
                         }
                     }
-
                     return canvas;
 
                 case EShape.IsoscelesRightTriangle:
@@ -62,7 +57,6 @@ namespace Assignment2
                             canvas[i + 2, j + 2] = '*';
                         }
                     }
-
                     return canvas;
 
                 case EShape.IsoscelesTriangle:
@@ -75,7 +69,6 @@ namespace Assignment2
                             canvas[height + 1 - i, 2 + j + i] = '*';
                         }
                     }
-
                     return canvas;
 
                 case EShape.Circle:
@@ -93,11 +86,10 @@ namespace Assignment2
                             }
                         }
                     }
-
                     return canvas;
 
                 default:
-                    Debug.Assert(EShape.InvalidValue > shape);
+                    Debug.Assert(true);
                     break;
             }
 
