@@ -21,8 +21,7 @@ namespace Assignment1
             {
                 output.Write($"{{0, {width}}}", Convert.ToString(integerArrays[i], 8));
                 output.Write($"{{0, {width + 1}}}", integerArrays[i]);
-                output.Write($"{{0, {width + 1}}}", integerArrays[i].ToString("X"));
-                output.WriteLine("");
+                output.Write($"{{0, {width + 1}}}\n", integerArrays[i].ToString("X"));
             }
         }
 
