@@ -91,7 +91,7 @@ namespace Lab5
         {
             double totalRevenue = 0;
 
-            if (revenuePerDay.Length == 0 || start < 0 || end >= revenuePerDay.Length || start > end)
+            if (revenuePerDay.Length == 0 || end >= revenuePerDay.Length || start > end)
             {
                 return -1;
             }
