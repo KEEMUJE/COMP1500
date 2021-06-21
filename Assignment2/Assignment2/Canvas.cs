@@ -77,7 +77,7 @@ namespace Assignment2
                     return canvas;
 
                 default:
-                    Debug.Assert(true);
+                    Debug.Assert(false);
                     break;
             }
 
@@ -89,15 +89,17 @@ namespace Assignment2
             uint width = (uint)canvas.GetLength(1);
             uint height = (uint)canvas.GetLength(0);
 
-            if (shape == EShape.Rectangle && width == 0 || height == 0 ||
-                shape == EShape.IsoscelesRightTriangle && width != height ||
-                shape == EShape.IsoscelesTriangle && width - 4 != (height - 4) * 2 - 1 ||
-                shape == EShape.Circle && (width != height || width % 2 == 0))
+            if (canvas.Length == 0)
             {
                 return false;
             }
 
             char[,] checkCanvas = Draw(width - 4, height - 4, shape);
+
+            if (checkCanvas.Length == 0)
+            {
+                return false;
+            }
 
             for (int i = 0; i < height; i++)
             {
