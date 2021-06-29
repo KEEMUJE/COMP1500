@@ -4,20 +4,29 @@
     {
         public static bool PlayGame(uint[] array)
         {
+            // array = new uint[7] { 3, 1, 4, 2, 8, 6, 0 };
+
             if (array.Length <= 1 || array[0] > array.Length - 1)
             {
                 return false;
             }
 
+            if (array[array[0]] == array[array.Length - 1])
+            {
+                return true;
+            }
+
+            for (uint i = array[0]; i < array.Length; i++)
+            {
+                if (array.Length - 1 < array[i + array[i]])
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
             return false;
-        }
-
-        public static bool GameVerification(uint[] array)
-        {
-            // 종료 조건 = array[array.Length - 1]에 도착할 때 || 도착하지 못한다고 판별 됐을 때.
-            // array = new uint[9] { 4, 3, 4, 4, 1, 5, 7, 1, 0 };
-
-            return true;
         }
     }
 }
