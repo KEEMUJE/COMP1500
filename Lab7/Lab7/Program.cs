@@ -28,9 +28,7 @@ namespace Lab7
             Debug.Assert(bPass);
 
             array = new uint[7] { 3, 1, 4, 2, 8, 6, 0 };
-            bPass = Lab7.PlayGame(array); // true
-            // array[3 + array[5]] > array.Length - 1 > false
-            // array[array[0] + array[array[0]] > array.length - 1;
+            bPass = Lab7.PlayGame(array);
 
             Debug.Assert(bPass);
 
