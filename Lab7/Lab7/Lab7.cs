@@ -6,7 +6,7 @@
         {
             // array = new uint[7] { 3, 1, 4, 2, 8, 6, 0 };
 
-            if (array.Length <= 1 || array[0] > array.Length - 1)
+            if (array.Length <= 1 || array[0] > array.Length - 1 || array[0] == 0)
             {
                 return false;
             }
@@ -26,7 +26,7 @@
                 return true;
             }
 
-            return false;
+            return true;
         }
     }
 }
