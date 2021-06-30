@@ -11,7 +11,7 @@
                 return false;
             }
 
-            if (array[array[0]] == array[array.Length - 1] || (array[array[0]] == array.Length - 2 && array.Length - 2 == 1))
+            if (array[array[0]] == array[array.Length - 1] || (array[array.Length - 2] == 1 && array[0] == array.Length - 2))
             {
                 return true;
             }
