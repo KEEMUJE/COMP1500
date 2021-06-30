@@ -36,7 +36,7 @@
                 return true;
             }
 
-            return PlayGame(checkArray);
+            return PlayGame(checkArray); // Test
         }
     }
 }
