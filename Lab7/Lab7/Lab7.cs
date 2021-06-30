@@ -4,7 +4,9 @@
     {
         public static bool PlayGame(uint[] array)
         {
-            if (array.Length <= 1 || array[0] > array.Length - 1 || array[0] == 0)
+            // array = new uint[7] { 3, 1, 4, 2, 8, 6, 0 };
+
+            if (array.Length <= 1 || array[0] == 0 || array[0] > array.Length - 1)
             {
                 return false;
             }
