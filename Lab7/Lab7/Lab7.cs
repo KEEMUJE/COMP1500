@@ -4,6 +4,8 @@
     {
         public static bool PlayGame(uint[] array)
         {
+            bool bIsVerified = true;
+
             if (array.Length <= 1 || array[0] > array.Length - 1 || array[0] == 0)
             {
                 return false;
