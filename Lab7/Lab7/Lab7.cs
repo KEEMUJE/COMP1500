@@ -23,11 +23,6 @@
                 return true;
             }
 
-            else
-            {
-                checkArray[0] = array[array.Length - array[0]];
-            }
-
             return PlayGame(checkArray);
         }
     }
