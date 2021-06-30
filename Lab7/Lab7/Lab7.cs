@@ -14,7 +14,7 @@
                 return true;
             }
 
-            uint[] checkArray = new uint[array.Length - 1];
+            uint[] checkArray = new uint[array.Length - 1]; // YES
 
             for (int i = 0; i < checkArray.Length; i++)
             {
