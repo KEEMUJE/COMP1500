@@ -14,12 +14,16 @@
                 return true;
             }
 
-            uint[] checkArray = new uint[array.Length - 1]; // YES
+            uint[] checkArray = new uint[array.Length - 1];
 
+            /*
             for (int i = 0; i < checkArray.Length; i++)
             {
                 checkArray[i] = array[i + 1];
             }
+            */
+
+            checkArray[0] = array[array.Length - 1];
 
             if (checkArray[0] == checkArray.Length - 1)
             {
