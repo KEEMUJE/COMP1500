@@ -16,7 +16,10 @@
 
             uint[] checkArray = new uint[array.Length - 1];
 
-            checkArray[0] = array[array.Length - 1];
+            for (int i = 0; i < checkArray.Length; i++)
+            {
+                checkArray[i] = array[i + 1];
+            }
 
             if (checkArray[0] == checkArray.Length - 1)
             {
@@ -24,6 +27,40 @@
             }
 
             return PlayGame(checkArray);
+
+
+
+            /*
+            uint[] checkArray = new uint[array.Length - 1];
+
+            checkArray[0] = array[array.Length - 1];
+
+            if (checkArray[0] == checkArray.Length - 1)
+            {
+                return true;
+            }
+
+            /*
+            uint[] checkArray;
+
+            if (array[0] == array[array.Length - 2])
+            {
+                checkArray = new uint[array.Length - 1];
+            }
+            else
+            {
+                checkArray = new uint[array.Length - array[0]];
+            }
+
+            checkArray[0] = array[array.Length - 1];
+
+            if (checkArray[0] == checkArray.Length - 1)
+            {
+                return true;
+            }
+            */
+
+            // return PlayGame(checkArray);
         }
     }
 }
