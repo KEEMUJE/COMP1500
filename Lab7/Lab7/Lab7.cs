@@ -4,8 +4,6 @@
     {
         public static bool PlayGame(uint[] array)
         {
-            bool bIsVerified = true;
-
             if (array.Length <= 1 || array[0] > array.Length - 1 || array[0] == 0)
             {
                 return false;
@@ -17,13 +15,6 @@
             }
 
             uint[] checkArray = new uint[array.Length - 1];
-
-            /*
-            for (int i = 0; i < checkArray.Length; i++)
-            {
-                checkArray[i] = array[i + 1];
-            }
-            */
 
             checkArray[0] = array[array.Length - 1];
 
