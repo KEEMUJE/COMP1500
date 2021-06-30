@@ -23,7 +23,7 @@
             }
             */
 
-            checkArray[0] = array[array.Length - 1];
+            checkArray[0] = array[array.Length - array[0]];
 
             if (checkArray[0] == checkArray.Length - 1)
             {
