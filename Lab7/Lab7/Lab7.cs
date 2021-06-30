@@ -14,6 +14,16 @@
                 return true;
             }
 
+            for (uint i = array[0]; i < array.Length; i++)
+            {
+                if (array.Length - 1 < array[i + array[i]])
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
             uint[] checkArray = new uint[array.Length - 1];
 
             for (int i = 0; i < checkArray.Length; i++)
