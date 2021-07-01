@@ -10,12 +10,12 @@
             }
 
             uint myPosition = array[0];
-            uint[] checkArray = new uint[array.Length];
+            uint checker = 0;
 
-            return GameVerification(array, checkArray, myPosition);
+            return GameVerification(array, checker, myPosition);
         }
 
-        public static bool GameVerification(uint[] array, uint[] checkArray, uint myPosition)
+        public static bool GameVerification(uint[] array, uint checker, uint myPosition)
         {
             if (myPosition > array.Length - 1 || myPosition < 1)
             {
@@ -27,10 +27,13 @@
                 return true;
             }
 
+            if (checker > 10)
+            {
+                return false;
+            }
 
-
-            return GameVerification(array, checkArray, myPosition + array[myPosition]) ||
-                   GameVerification(array, checkArray, myPosition - array[myPosition]);
+            return GameVerification(array, checker += 1, myPosition + array[myPosition]) ||
+                   GameVerification(array, checker += 1, myPosition - array[myPosition]);
         }
     }
 }
