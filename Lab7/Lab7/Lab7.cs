@@ -27,7 +27,7 @@
                 return true;
             }
 
-            if (checker > 10)
+            if (checker > 100)
             {
                 return false;
             }
