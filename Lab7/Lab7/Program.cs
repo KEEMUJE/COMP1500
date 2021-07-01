@@ -11,6 +11,16 @@ namespace Lab7
 
             Debug.Assert(!bPass);
 
+            array = new uint[1] { 0 };
+            bPass = Lab7.PlayGame(array); //false
+
+            Debug.Assert(!bPass);
+
+            array = new uint[2] { 1, 0 };
+            bPass = Lab7.PlayGame(array); // true
+
+            Debug.Assert(bPass);
+
             array = new uint[4] { 2, 2, 1, 0 };
             bPass = Lab7.PlayGame(array); // true
 
@@ -36,16 +46,6 @@ namespace Lab7
 
             Debug.Assert(bPass);
 
-            array = new uint[1] { 0 };
-            bPass = Lab7.PlayGame(array); //false
-
-            Debug.Assert(!bPass);
-
-            array = new uint[2] { 1, 0 };
-            bPass = Lab7.PlayGame(array); // true
-
-            Debug.Assert(bPass);
-
             array = new uint[4] { 2, 5, 1, 0 };
             bPass = Lab7.PlayGame(array); // true
 
@@ -61,16 +61,6 @@ namespace Lab7
 
             Debug.Assert(bPass);
 
-            array = new uint[10] { 6, 1, 5, 2, 4, 8, 2, 1, 4, 0 };
-            bPass = Lab7.PlayGame(array); // false
-
-            Debug.Assert(!bPass);
-
-            array = new uint[12] { 3, 6, 2, 4, 4, 6, 1, 1, 4, 5, 1, 0 };
-            bPass = Lab7.PlayGame(array);  // true
-
-            Debug.Assert(bPass);
-
             array = new uint[5] { 2, 1, 1, 1, 0 };
             bPass = Lab7.PlayGame(array);  // true
 
@@ -80,6 +70,9 @@ namespace Lab7
             bPass = Lab7.PlayGame(array);  // false
 
             Debug.Assert(!bPass);
+
+            // 여기까지 통과
+
 
             array = new uint[] { 5, 4, 1, 2, 1, 2, 0 };
             bPass = Lab7.PlayGame(array);  // false
@@ -110,6 +103,16 @@ namespace Lab7
             bPass = Lab7.PlayGame(array);
 
             Debug.Assert(bPass);
+
+            array = new uint[12] { 3, 6, 2, 4, 4, 6, 1, 1, 4, 5, 1, 0 };
+            bPass = Lab7.PlayGame(array);  // true
+
+            Debug.Assert(bPass);
+
+            array = new uint[10] { 6, 1, 5, 2, 4, 8, 2, 1, 4, 0 };
+            bPass = Lab7.PlayGame(array); // false
+
+            Debug.Assert(!bPass);
         }
     }
 }
