@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Lab8
 {
@@ -7,14 +8,7 @@ namespace Lab8
     {
         public static string PrettifyList(string s)
         {
-            string checkNullOrWhiteSpace = s;
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace(" ", "");
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\n", "");
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\t", "");
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\r", "");
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\u2000", "");
-
-            if (checkNullOrWhiteSpace.Length == 0 || checkNullOrWhiteSpace == null || checkNullOrWhiteSpace == string.Empty)
+            if (string.IsNullOrWhiteSpace(s) || string.IsNullOrEmpty(s))
             {
                 return null;
             }
@@ -24,16 +18,16 @@ namespace Lab8
 
             StringBuilder tempBuilder = new StringBuilder(CAPACITY);
 
-            PrettifyListRecursive(verticalSplit, tempBuilder, 0);
+            List<String> convert = PrettifyListRecursive(new List<string>(), tempBuilder, verticalSplit, 0);
 
-            return tempBuilder.ToString();
+            return string.Join("", convert);
         }
 
-        public static string PrettifyListRecursive(string[] verticalSplit, StringBuilder tempBuilder, int index)
+        public static List<string> PrettifyListRecursive(List<string> outConsole, StringBuilder tempBuilder, string[] verticalSplit, int index)
         {
             if (index == verticalSplit.Length)
             {
-                return tempBuilder.ToString();
+                return outConsole;
             }
 
             int asciiValue = 97;
@@ -45,14 +39,16 @@ namespace Lab8
             while (underIndex != -1)
             {
                 tempBuilder.Replace("_", $"\n    {Convert.ToChar(asciiValue++)}) ", underIndex, 1);
+                tempBuilder.Replace("/", "\n        - ");
                 underIndex = tempBuilder.ToString().IndexOf('_');
             }
 
-            tempBuilder.Replace("/", "\n        - ");
+            outConsole.Add(tempBuilder.ToString());
+            tempBuilder.Clear();
 
-            PrettifyListRecursive(verticalSplit, tempBuilder, index + 1);
+            PrettifyListRecursive(outConsole, tempBuilder, verticalSplit, index + 1);
 
-            return null;
+            return outConsole;
         }
     }
 }
