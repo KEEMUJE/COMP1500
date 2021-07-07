@@ -7,7 +7,10 @@ namespace Lab8
     {
         public static string PrettifyList(string s)
         {
-            if (s.Length == 0)
+            string checkNullOrWhiteSpace = s;
+            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace(" ", string.Empty);
+
+            if (checkNullOrWhiteSpace.Length == 0)
             {
                 return null;
             }
