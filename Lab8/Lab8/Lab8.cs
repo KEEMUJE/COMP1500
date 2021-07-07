@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Lab8
 {
@@ -8,7 +9,7 @@ namespace Lab8
         public static string PrettifyList(string s)
         {
             string checkNullOrWhiteSpace = s;
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace(" ", string.Empty);
+            Regex.Replace(checkNullOrWhiteSpace, @"\s", "");
 
             if (checkNullOrWhiteSpace.Length == 0 || s == null)
             {
