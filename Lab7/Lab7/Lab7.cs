@@ -31,7 +31,7 @@
             {
                 return false;
             }
-
+            
             return GameVerification(array, checker += 1, myPosition + array[myPosition]) ||
                    GameVerification(array, checker += 1, myPosition - array[myPosition]);
         }
