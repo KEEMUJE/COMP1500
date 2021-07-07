@@ -10,7 +10,7 @@ namespace Lab8
             string checkNullOrWhiteSpace = s;
             checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace(" ", string.Empty);
 
-            if (checkNullOrWhiteSpace.Length == 0)
+            if (checkNullOrWhiteSpace.Length == 0 || s == null)
             {
                 return null;
             }
