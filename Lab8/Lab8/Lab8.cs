@@ -8,13 +8,13 @@ namespace Lab8
         public static string PrettifyList(string s)
         {
             string checkNullOrWhiteSpace = s;
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace(" ", null);
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\n", null);
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\t", null);
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\r", null);
-            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\u2000", null);
+            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace(" ", "");
+            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\n", "");
+            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\t", "");
+            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\r", "");
+            checkNullOrWhiteSpace = checkNullOrWhiteSpace.Replace("\u2000", "");
 
-            if (checkNullOrWhiteSpace.Length == 0 || s == null)
+            if (checkNullOrWhiteSpace.Length == 0 || checkNullOrWhiteSpace == null || checkNullOrWhiteSpace == string.Empty)
             {
                 return null;
             }
