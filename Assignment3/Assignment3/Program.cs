@@ -16,7 +16,11 @@ namespace Assignment3
 
             Debug.Assert(steps == 7);
 
-            var snapshots = TowerOfHanoi.SolveTowerOfHanoi(3);
+            var snapshots = TowerOfHanoi.SolveTowerOfHanoi(1);
+
+            Debug.Assert(isEqual(snapshots[0][2], new List<int> { 1 }));
+
+            snapshots = TowerOfHanoi.SolveTowerOfHanoi(3);
 
             Debug.Assert(isEqual(snapshots[0][0], new List<int> { 3, 2, 1 }));
             Debug.Assert(snapshots[0][1].Count == 0);
