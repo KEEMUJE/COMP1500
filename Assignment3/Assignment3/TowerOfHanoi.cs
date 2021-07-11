@@ -19,7 +19,7 @@ namespace Assignment3
 
         public static List<List<int>[]> SolveTowerOfHanoi(int numDiscs)
         {
-            if (numDiscs < 1)
+            if (numDiscs < 0)
             {
                 return null;
             }
@@ -48,7 +48,12 @@ namespace Assignment3
 
         public static List<List<int>[]> SolveTowerOfHanoiRecursive(int numDiscs, int index, List<List<int>[]> snapshots, List<int> from, List<int> aux, List<int> to)
         {
-            if (numDiscs <= 1)
+            if (numDiscs == 0)
+            {
+                return snapshots;
+            }
+
+            if (numDiscs == 1)
             {
                 to.Add(from[from.Count - 1]);
                 from.Remove(to[to.Count - 1]);
