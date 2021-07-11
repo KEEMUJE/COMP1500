@@ -9,19 +9,40 @@ namespace Assignment3
         static void Main(string[] args)
         {
             int steps = TowerOfHanoi.GetNumberOfSteps(-2);
-
             Debug.Assert(steps == -1);
 
-            steps = TowerOfHanoi.GetNumberOfSteps(3);
+            steps = TowerOfHanoi.GetNumberOfSteps(0);
+            Debug.Assert(steps == 0);
 
+            steps = TowerOfHanoi.GetNumberOfSteps(3);
             Debug.Assert(steps == 7);
 
-            var snapshots = TowerOfHanoi.SolveTowerOfHanoi(1);
+            var snapshots = TowerOfHanoi.SolveTowerOfHanoi(-1);
+            Console.Write($"NegativeNvalue");
+            Debug.Assert(snapshots.Count == 0);
+            Console.WriteLine(" - Success\n");
 
-            Debug.Assert(isEqual(snapshots[0][2], new List<int> { 1 }));
+            snapshots = TowerOfHanoi.SolveTowerOfHanoi(0);
+            Console.Write($"ZeroDisks");
+            Debug.Assert(snapshots.Count == 0);
+            Console.WriteLine(" - Success\n");
+            Console.WriteLine("------------------------------------------------");
+
+            snapshots = TowerOfHanoi.SolveTowerOfHanoi(1);
+            Console.WriteLine($"OneDisk\n");
+            Debug.Assert(isEqual(snapshots[0][0], new List<int> { 1 }));
+            Debug.Assert(snapshots[0][1].Count == 0);
+            Debug.Assert(snapshots[0][2].Count == 0);
+
+            Debug.Assert(snapshots[1][0].Count == 0);
+            Debug.Assert(snapshots[1][1].Count == 0);
+            Debug.Assert(isEqual(snapshots[1][2], new List<int> { 1 }));
+
+            printSnapshots(snapshots);
+            Console.WriteLine("------------------------------------------------");
 
             snapshots = TowerOfHanoi.SolveTowerOfHanoi(3);
-
+            Console.WriteLine($"numDiscs : 3\n");
             Debug.Assert(isEqual(snapshots[0][0], new List<int> { 3, 2, 1 }));
             Debug.Assert(snapshots[0][1].Count == 0);
             Debug.Assert(snapshots[0][2].Count == 0);
@@ -59,21 +80,29 @@ namespace Assignment3
 
         private static void printSnapshots(List<List<int>[]> snapshots)
         {
+
+            Console.WriteLine($"└ [");
+            Console.WriteLine();
             for (int i = 0; i < snapshots.Count; i++)
             {
-                if (i == 0)
+                Console.Write($"\0\0\0【\0");
+                Console.Write($"└ [ {string.Join(", ", snapshots[i][0]),7} ]");
+                Console.Write($"└ [ {string.Join(", ", snapshots[i][1]),7} ]");
+                Console.Write($"└ [ {string.Join(", ", snapshots[i][2]),7} ]");
+
+                if (i == snapshots.Count)
                 {
-                    Console.WriteLine($"Initial State --------------------------------------");
-                }
-                else
-                {
-                    Console.WriteLine($"Step {i}. --------------------------------------");
+                    Console.WriteLine($"\0\0】");
                 }
 
-                Console.WriteLine($"Start: [ {string.Join(", ", snapshots[i][0])} ]");
-                Console.WriteLine($"Aux: [ {string.Join(", ", snapshots[i][1])} ]");
-                Console.WriteLine($"End: [ {string.Join(", ", snapshots[i][2])} ]");
+                else
+                {
+                    Console.WriteLine($"\0\0】");
+                    Console.WriteLine();
+                }
             }
+            Console.WriteLine($"  ]");
+            Console.WriteLine();
         }
 
         private static bool isEqual(List<int> actual, List<int> expected)
