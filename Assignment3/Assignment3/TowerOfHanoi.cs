@@ -47,18 +47,21 @@ namespace Assignment3
 
         public static List<List<int>[]> SolveTowerOfHanoiRecursive(int numDiscs, int index, List<List<int>[]> snapshots, List<int> from, List<int> aux, List<int> to)
         {
-            if (numDiscs == 1)
-            {
-                to.Add(from[from.Count - 1]);
-                from.Remove(to[to.Count - 1]);
-                return snapshots;
-            }
-
             snapshots.Add(new List<int>[NUMBER_OF_STICKS]);
 
             for (int i = 0; i < NUMBER_OF_STICKS; i++)
             {
                 snapshots[index][i] = new List<int>();
+            }
+
+            from = snapshots[index][0];
+            aux = snapshots[index][1];
+            to = snapshots[index][2];
+
+            if (numDiscs == 1)
+            {
+                to.AddRange(snapshots[0][0]);
+                return snapshots;
             }
 
             return snapshots;
