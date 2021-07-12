@@ -22,6 +22,9 @@ namespace Lab8
 
         public static List<string> ConvertPrettifyListRecursive(List<string> outConsole, StringBuilder prettifyBuilder, string[] verticalSplit, int index)
         {
+            const char oneSpace = ' ';
+            const string TAP = "    ";
+
             if (index == verticalSplit.Length)
             {
                 return outConsole;
@@ -30,7 +33,7 @@ namespace Lab8
             int asciiValue = 97;
             int asciiLoop = 0;
 
-            verticalSplit[index] = verticalSplit[index].Insert(0, $"{index + 1}) ");
+            verticalSplit[index] = verticalSplit[index].Insert(0, $"{index + 1}){oneSpace}");
             var underSplit = verticalSplit[index].Split('_');
             prettifyBuilder.AppendLine(underSplit[0].ToString());
 
@@ -42,14 +45,14 @@ namespace Lab8
                     asciiLoop += 1;
                 }
 
-                underSplit[i] = underSplit[i].Insert(0, $"    {Convert.ToChar(asciiValue++)}) ");
+                underSplit[i] = underSplit[i].Insert(0, $"{TAP}{Convert.ToChar(asciiValue++)}){oneSpace}");
 
                 for (int j = 0; j < asciiLoop; j++)
                 {
                     underSplit[i] = underSplit[i].Insert(underSplit[i].IndexOf($"{Convert.ToChar(asciiValue - 1)}"), $"{Convert.ToChar(asciiValue - 1)}");
                 }
 
-                underSplit[i] = underSplit[i].Replace("/", "\n        - ");
+                underSplit[i] = underSplit[i].Replace("/", $"\n{TAP}{TAP}-{oneSpace}");
                 prettifyBuilder.AppendLine(underSplit[i].ToString());
             }
 
