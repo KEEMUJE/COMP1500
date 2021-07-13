@@ -15,12 +15,12 @@ namespace Lab9
 
             else if (sortedList1 == null)
             {
-                return mergeList = sortedList2;
+                return sortedList2;
             }
 
             else if (sortedList2 == null)
             {
-                return mergeList = sortedList1;
+                return sortedList1;
             }
 
             int firstListIndex = 0;
@@ -30,20 +30,12 @@ namespace Lab9
             {
                 if (firstListIndex > sortedList1.Count - 1)
                 {
-                    for (int i = secondListIndex; i < sortedList2.Count; i++)
-                    {
-                        mergeList.Add(sortedList2[i]);
-                        ++secondListIndex;
-                    }
+                    return PutRemainingList(ref mergeList, sortedList2, ref secondListIndex);
                 }
 
                 else if (secondListIndex > sortedList2.Count - 1)
                 {
-                    for (int i = firstListIndex; i < sortedList1.Count; i++)
-                    {
-                        mergeList.Add(sortedList1[i]);
-                        ++firstListIndex;
-                    }
+                    return PutRemainingList(ref mergeList, sortedList1, ref firstListIndex);
                 }
 
                 else if (sortedList1[firstListIndex] > sortedList2[secondListIndex])
@@ -62,13 +54,57 @@ namespace Lab9
             return mergeList;
         }
 
+        public static List<int> PutRemainingList(ref List<int> mergeList, List<int> remainingList, ref int index)
+        {
+            for (int i = index; i < remainingList.Count; i++)
+            {
+                mergeList.Add(remainingList[i]);
+                ++index;
+            }
+
+            return mergeList;
+        }
+
         public static Dictionary<string, int> CombineListsToDictionary(List<string> keys, List<int> values)
         {
-            return null;
+            Dictionary<string, int> combineDictionary = new Dictionary<string, int>();
+            int index = 0;
+            int limitLoop;
+
+            if (keys.Count > values.Count)
+            {
+                limitLoop = values.Count;
+            }
+            else
+            {
+                limitLoop = keys.Count;
+            }
+
+            while (index < limitLoop)
+            {
+                combineDictionary.Add(keys[index], values[index]);
+                ++index;
+
+                if (index > keys.Count - 1)
+                {
+                    break;
+                }
+
+                index = keys.IndexOf(keys[index]) != keys.LastIndexOf(keys[index]) ? ++index : index;
+            }
+
+            return combineDictionary;
         }
 
         public static Dictionary<string, decimal> MergeDictionaries(Dictionary<string, int> numerators, Dictionary<string, int> denominators)
         {
+            if (numerators == null || denominators == null)
+            {
+                return null;
+            }
+
+            Dictionary<string, decimal> result = new Dictionary<string, decimal>();
+
             return null;
         }
     }
