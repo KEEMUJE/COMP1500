@@ -59,9 +59,7 @@ namespace Lab8
             outConsole.Add(prettifyBuilder.ToString());
             prettifyBuilder.Clear();
 
-            ConvertPrettifyListRecursive(outConsole, prettifyBuilder, verticalSplit, index + 1);
-
-            return outConsole;
+            return ConvertPrettifyListRecursive(outConsole, prettifyBuilder, verticalSplit, index + 1);
         }
     }
 }
