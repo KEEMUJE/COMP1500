@@ -91,7 +91,10 @@ namespace Lab9
                     break;
                 }
 
-                index = keys.IndexOf(keys[index]) != keys.LastIndexOf(keys[index]) ? ++index : index;
+                foreach (var i in keys)
+                {
+                    index = keys.IndexOf(keys[index]) != keys.LastIndexOf(keys[index]) ? ++index : index;
+                }
             }
 
             return combineDictionary;
