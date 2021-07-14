@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Lab9
 {
@@ -98,14 +99,25 @@ namespace Lab9
 
         public static Dictionary<string, decimal> MergeDictionaries(Dictionary<string, int> numerators, Dictionary<string, int> denominators)
         {
-            if (numerators == null || denominators == null)
-            {
-                return null;
-            }
-
             Dictionary<string, decimal> result = new Dictionary<string, decimal>();
 
-            return null;
+            if (numerators.Count == 0 || denominators.Count == 0)
+            {
+                return result;
+            }
+
+            foreach (KeyValuePair<string, int> numeratorsKvp in numerators)
+            {
+                foreach (KeyValuePair<string, int> denominatorsKvp in denominators)
+                {
+                    if (numeratorsKvp.Key == denominatorsKvp.Key)
+                    {
+                        result.Add(numeratorsKvp.Key, Math.Abs(numeratorsKvp.Value / (decimal)denominatorsKvp.Value));
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
