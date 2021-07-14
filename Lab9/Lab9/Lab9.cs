@@ -71,6 +71,11 @@ namespace Lab9
             int capacity = keys.Count > values.Count ? values.Count : keys.Count;
             Dictionary<string, int> combineDictionary = new Dictionary<string, int>(capacity);
 
+            if (keys.Count == 0 || values.Count == 0)
+            {
+                return combineDictionary;
+            }
+
             combineDictionary.Add(keys[0], values[0]);
             int index = 1;
             while (index < capacity)
