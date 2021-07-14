@@ -68,34 +68,23 @@ namespace Lab9
 
         public static Dictionary<string, int> CombineListsToDictionary(List<string> keys, List<int> values)
         {
-            Dictionary<string, int> combineDictionary = new Dictionary<string, int>();
-            int index = 0;
-            int limitLoop;
+            int capacity = keys.Count > values.Count ? values.Count : keys.Count;
+            Dictionary<string, int> combineDictionary = new Dictionary<string, int>(capacity);
 
-            if (keys.Count > values.Count)
+            combineDictionary.Add(keys[0], values[0]);
+            int index = 1;
+            while (index < capacity)
             {
-                limitLoop = values.Count;
-            }
-            else
-            {
-                limitLoop = keys.Count;
-            }
-
-            while (index < limitLoop)
-            {
-                combineDictionary.Add(keys[index], values[index]);
-                ++index;
-
-                if (index > keys.Count - 1)
+                if (keys.IndexOf(keys[index]) != keys.LastIndexOf(keys[index]))
                 {
-                    break;
+                    ++index;
                 }
-
-                foreach (var i in keys)
+                else
                 {
-                    index = keys.IndexOf(keys[index]) != keys.LastIndexOf(keys[index]) ? ++index : index;
+                    combineDictionary.Add(keys[index], values[index]);
+                    ++index;
                 }
-            }
+            }    
 
             return combineDictionary;
         }
