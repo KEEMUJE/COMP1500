@@ -98,13 +98,12 @@ namespace Lab9
                 Debug.Assert(keyvaluePair.Value == dict[keyvaluePair.Key]);
             }
 
-            List<string> keys2 = new List<string> { "a", "a", "b", "c", "a", "d" };
+            List<string> keys2 = new List<string> { "a", "a", "a", "c", "a", "d" };
             List<int> values2 = new List<int> { 1, 2, 3, 4, 5, 6 };
             Dictionary<string, int> dict2 = Lab9.CombineListsToDictionary(keys2, values2);
             Dictionary<string, int> expectedDict2 = new Dictionary<string, int>
             {
                 { "a", 1 },
-                { "b", 3 },
                 { "c", 4 },
                 { "d", 6 }
             };
