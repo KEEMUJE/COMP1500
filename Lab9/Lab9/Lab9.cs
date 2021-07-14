@@ -110,7 +110,7 @@ namespace Lab9
             {
                 foreach (KeyValuePair<string, int> denominatorsKvp in denominators)
                 {
-                    if (numeratorsKvp.Key == denominatorsKvp.Key)
+                    if (numeratorsKvp.Key == denominatorsKvp.Key && denominatorsKvp.Value != 0)
                     {
                         result.Add(numeratorsKvp.Key, Math.Abs(numeratorsKvp.Value / (decimal)denominatorsKvp.Value));
                     }
