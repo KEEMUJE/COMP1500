@@ -76,11 +76,10 @@ namespace Lab9
                 return combineDictionary;
             }
 
-            combineDictionary.Add(keys[0], values[0]);
-            int index = 1;
+            int index = 0;
             while (index < capacity)
             {
-                if (keys.IndexOf(keys[index]) != keys.LastIndexOf(keys[index]))
+                if (combineDictionary.ContainsKey(keys[index]))
                 {
                     ++index;
                 }
