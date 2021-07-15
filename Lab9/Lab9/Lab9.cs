@@ -76,8 +76,7 @@ namespace Lab9
                 return combineDictionary;
             }
 
-            int index = 0;
-            while (index < capacity)
+            for (int index = 0; index < capacity; index++)
             {
                 if (combineDictionary.ContainsKey(keys[index]))
                 {
@@ -88,7 +87,7 @@ namespace Lab9
                     combineDictionary.Add(keys[index], values[index]);
                     ++index;
                 }
-            }    
+            }
 
             return combineDictionary;
         }
