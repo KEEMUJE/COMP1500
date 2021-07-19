@@ -2,9 +2,6 @@
 
 public class Rectangle
 {
-    private uint mWidth;
-    private uint mHeight;
-
     public Rectangle(uint width, uint height)
     {
         Width = width;
