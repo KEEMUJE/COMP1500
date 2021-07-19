@@ -31,12 +31,12 @@ namespace Lab9
             {
                 if (firstListIndex > sortedList1.Count - 1)
                 {
-                    return PutRemainingList(ref mergeList, sortedList2, ref secondListIndex);
+                    return PutRemainingList(mergeList, sortedList2, ref secondListIndex);
                 }
 
                 else if (secondListIndex > sortedList2.Count - 1)
                 {
-                    return PutRemainingList(ref mergeList, sortedList1, ref firstListIndex);
+                    return PutRemainingList(mergeList, sortedList1, ref firstListIndex);
                 }
 
                 else if (sortedList1[firstListIndex] > sortedList2[secondListIndex])
@@ -55,7 +55,7 @@ namespace Lab9
             return mergeList;
         }
 
-        public static List<int> PutRemainingList(ref List<int> mergeList, List<int> remainingList, ref int index)
+        public static List<int> PutRemainingList(List<int> mergeList, List<int> remainingList, ref int index)
         {
             for (int i = index; i < remainingList.Count; i++)
             {
@@ -78,14 +78,9 @@ namespace Lab9
 
             for (int index = 0; index < capacity; index++)
             {
-                if (combineDictionary.ContainsKey(keys[index]))
-                {
-                    ++index;
-                }
-                else
+                if (!combineDictionary.ContainsKey(keys[index]))
                 {
                     combineDictionary.Add(keys[index], values[index]);
-                    ++index;
                 }
             }
 
