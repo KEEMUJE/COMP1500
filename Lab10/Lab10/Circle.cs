@@ -4,7 +4,7 @@ namespace Lab10
 {
     public class Circle
     {
-        const float PI = 3.14159265359f;
+        const double PI = 3.14159265359;
 
         public Circle(uint radius)
         {
