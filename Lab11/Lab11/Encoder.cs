@@ -13,13 +13,12 @@ namespace Lab11
             }
 
             int dataCount = 0;
-            int index = 0;
             using (var reader = new BinaryReader(input))
             using (var writer = new BinaryWriter(output))
             {
                 int n = reader.ReadByte();
 
-                if (dataCount < 255)
+                if (dataCount > 255)
                 {
                     writer.Write(Convert.ToString(dataCount, 16));
                     writer.Write(Convert.ToString(n, 16));
@@ -34,6 +33,7 @@ namespace Lab11
                 {
                     writer.Write(Convert.ToString(dataCount, 16));
                     writer.Write(Convert.ToString(n, 16));
+                    dataCount = 0;
                 }
             }
 
