@@ -32,7 +32,7 @@ namespace Lab11
                         ++dataCount;
                     }
 
-                    else if (dataCount > 255)
+                    else if (dataCount >= 255)
                     {
                         writer.Write(Convert.ToChar(dataCount));
                         writer.Write(Convert.ToChar(values[i]));
