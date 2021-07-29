@@ -13,6 +13,30 @@ namespace Lab11
             }
 
             int dataCount = 0;
+            using (var reader = new StreamReader(input))
+            using (var writer = new StreamWriter(output))
+            {
+                int n = reader.Read();
+
+                if (dataCount > 255)
+                {
+                    writer.Write(Convert.ToString(dataCount, 16));
+                    writer.Write(Convert.ToString(n, 16));
+                    dataCount = 0;
+                }
+
+                if (n == reader.Read())
+                {
+                    ++dataCount;
+                }
+                else
+                {
+                    writer.Write(Convert.ToString(dataCount, 16));
+                    writer.Write(Convert.ToString(n, 16));
+                    dataCount = 0;
+                }
+            }
+            /*
             using (var reader = new BinaryReader(input))
             using (var writer = new BinaryWriter(output))
             {
@@ -36,6 +60,7 @@ namespace Lab11
                     dataCount = 0;
                 }
             }
+            */
 
             return true;
         }
@@ -55,7 +80,7 @@ namespace Lab11
 
                 for (int i = 0; i < values.Length; ++i)
                 {
-                    writer.Write(Convert.ToChar(values[i]));
+                    writer.Write(Convert.ToString(values[i]));
                 }
             }
 
