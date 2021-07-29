@@ -13,54 +13,32 @@ namespace Lab11
             }
 
             int dataCount = 0;
-            using (var reader = new StreamReader(input))
-            using (var writer = new StreamWriter(output))
-            {
-                int n = reader.Read();
-
-                if (dataCount > 255)
-                {
-                    writer.Write(Convert.ToString(dataCount, 16));
-                    writer.Write(Convert.ToString(n, 16));
-                    dataCount = 0;
-                }
-
-                if (n == reader.Read())
-                {
-                    ++dataCount;
-                }
-                else
-                {
-                    writer.Write(Convert.ToString(dataCount, 16));
-                    writer.Write(Convert.ToString(n, 16));
-                    dataCount = 0;
-                }
-            }
-            /*
+            byte[] values = new byte[input.Length];
             using (var reader = new BinaryReader(input))
             using (var writer = new BinaryWriter(output))
             {
-                int n = reader.ReadByte();
+                reader.Read(values, 0, values.Length);
 
-                if (dataCount > 255)
+                for (int i = 1; i < values.Length; ++i)
                 {
-                    writer.Write(Convert.ToString(dataCount, 16));
-                    writer.Write(Convert.ToString(n, 16));
-                    dataCount = 0;
-                }
-
-                if (n == reader.ReadByte())
-                {
-                    ++dataCount;
-                }
-                else
-                {
-                    writer.Write(Convert.ToString(dataCount, 16));
-                    writer.Write(Convert.ToString(n, 16));
-                    dataCount = 0;
+                    if (dataCount > 255)
+                    {
+                        writer.Write(Convert.ToString(dataCount, 16));
+                        writer.Write(Convert.ToString(values[i], 16));
+                        dataCount = 0;
+                    }
+                    if (values[i - 1] == values[i])
+                    {
+                        ++dataCount;
+                    }
+                    else
+                    {
+                        writer.Write(Convert.ToString(dataCount, 16));
+                        writer.Write(Convert.ToString(values[i], 16));
+                        dataCount = 0;
+                    }
                 }
             }
-            */
 
             return true;
         }
