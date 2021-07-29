@@ -12,10 +12,10 @@ namespace Lab11
                 return false;
             }
 
-            int dataCount = 0;
+            int dataCount = 1;
             byte[] values = new byte[input.Length];
             using (var reader = new BinaryReader(input))
-            using (var writer = new BinaryWriter(output))
+            using (var writer = new StreamWriter(output))
             {
                 reader.Read(values, 0, values.Length);
 
@@ -24,18 +24,24 @@ namespace Lab11
                     if (dataCount > 255)
                     {
                         writer.Write(Convert.ToString(dataCount, 16));
-                        writer.Write(Convert.ToString(values[i], 16));
-                        dataCount = 0;
+                        writer.Write(Convert.ToString(values[i - 1], 16));
+                        dataCount = 1;
                     }
-                    if (values[i - 1] == values[i])
+                    else if (values[i - 1] != values[i] && dataCount < 16)
+                    {
+                        writer.Write($"0{Convert.ToString(dataCount, 16)}");
+                        writer.Write(Convert.ToString(values[i - 1], 16));
+                        dataCount = 1;
+                    }
+                    else if (values[i - 1] == values[i])
                     {
                         ++dataCount;
                     }
                     else
                     {
                         writer.Write(Convert.ToString(dataCount, 16));
-                        writer.Write(Convert.ToString(values[i], 16));
-                        dataCount = 0;
+                        writer.Write(Convert.ToString(values[i - 1], 16));
+                        dataCount = 1;
                     }
                 }
             }
