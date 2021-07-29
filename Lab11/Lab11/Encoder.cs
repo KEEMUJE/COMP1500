@@ -21,12 +21,20 @@ namespace Lab11
 
                 for (int i = 0; i < values.Length; ++i)
                 {
-                    if (i == values.Length - 1)
+                    if (i == values.Length - 1 && values[i - 1] == values[i])
                     {
                         writer.Write(Convert.ToChar(dataCount));
                         writer.Write(Convert.ToChar(values[i]));
                         dataCount = 1;
                     }
+
+                    else if (i == values.Length - 1)
+                    {
+                        writer.Write(Convert.ToChar(dataCount));
+                        writer.Write(Convert.ToChar(values[i]));
+                        dataCount = 1;
+                    }
+
                     else if (values[i] == values[i + 1])
                     {
                         ++dataCount;
@@ -70,10 +78,7 @@ namespace Lab11
             using (var writer = new BinaryWriter(output))
             {
                 reader.Read(values, 0, values.Length);
-                for (int i = 0; i < values.Length; ++i)
-                {
-                    writer.Write(Convert.ToChar(values[i]));
-                }
+                
             }
 
             return true;
