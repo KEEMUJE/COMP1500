@@ -60,10 +60,13 @@ namespace Lab11
             }
 
             char[] tempChar = new char[input.Length];
-            using (var reader = new StreamReader(input))
-            using (var writer = new StreamWriter(output))
+            using (var reader = new BinaryReader(input))
+            using (var writer = new BinaryWriter(output))
             {
-                reader.Read(tempChar, 0, tempChar.Length);
+                for (int i = 0; i < tempChar.Length; ++i)
+                {
+                    tempChar[i] = (char)reader.ReadByte();
+                }
 
                 char[] keys = new char[tempChar.Length / 2];
                 char[] values = new char[tempChar.Length / 2];
