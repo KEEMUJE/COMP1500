@@ -19,23 +19,17 @@ namespace Lab11
             {
                 reader.Read(values, 0, values.Length);
 
-                for (int i = 0; i < values.Length; ++i)
+                for (int i = 1; i < values.Length; ++i)
                 {
                     if (i == values.Length - 1 && values[i - 1] == values[i])
                     {
+                        ++dataCount;
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
+                        writer.Write(Convert.ToChar(values[i - 1]));
                         dataCount = 1;
                     }
 
-                    else if (i == values.Length - 1)
-                    {
-                        writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
-                        dataCount = 1;
-                    }
-
-                    else if (values[i] == values[i + 1])
+                    else if (values[i - 1] == values[i])
                     {
                         ++dataCount;
                     }
@@ -43,21 +37,21 @@ namespace Lab11
                     else if (dataCount >= 255)
                     {
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
+                        writer.Write(Convert.ToChar(values[i - 1]));
                         dataCount = 1;
                     }
 
                     else if (dataCount > 16)
                     {
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
+                        writer.Write(Convert.ToChar(values[i - 1]));
                         dataCount = 1;
                     }
 
                     else
                     {
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
+                        writer.Write(Convert.ToChar(values[i - 1]));
                         dataCount = 1;
                     }
                 }
