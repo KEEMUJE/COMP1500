@@ -12,19 +12,26 @@ namespace Lab11
                 return false;
             }
 
-            int dataCount = 1;
-            byte[] values = new byte[input.Length];
             using (var reader = new BinaryReader(input))
             using (var writer = new BinaryWriter(output))
             {
+                byte dataCount = 1;
+                byte[] values = new byte[input.Length];
                 reader.Read(values, 0, values.Length);
 
                 for (int i = 0; i < values.Length; ++i)
                 {
                     if (i == values.Length - 1)
                     {
-                        writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
+                        writer.Write(dataCount);
+                        writer.Write(values[i]);
+                        break;
+                    }
+
+                    if (dataCount == 255)
+                    {
+                        writer.Write(dataCount);
+                        writer.Write(values[i]);
                         dataCount = 1;
                     }
 
@@ -33,24 +40,10 @@ namespace Lab11
                         ++dataCount;
                     }
 
-                    else if (dataCount >= 255)
-                    {
-                        writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
-                        dataCount = 1;
-                    }
-
-                    else if (dataCount > 16)
-                    {
-                        writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
-                        dataCount = 1;
-                    }
-
                     else
                     {
-                        writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i]));
+                        writer.Write(dataCount);
+                        writer.Write(values[i]);
                         dataCount = 1;
                     }
                 }
@@ -76,13 +69,16 @@ namespace Lab11
                 char[] values = new char[tempChar.Length / 2];
                 for (int i = 0; i < tempChar.Length; ++i)
                 {
+                    int keysIndex = 0;
+                    int valuesIndex = 0;
+
                     if (i % 2 == 0)
                     {
-                        keys[i] = tempChar[i];
+                        keys[keysIndex++] = tempChar[i];
                     }
                     else
                     {
-                        values[i] = tempChar[i];
+                        values[valuesIndex++] = tempChar[i];
                     }
                 }
 
