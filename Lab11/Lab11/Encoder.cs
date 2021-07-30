@@ -19,17 +19,16 @@ namespace Lab11
             {
                 reader.Read(values, 0, values.Length);
 
-                for (int i = 1; i < values.Length; ++i)
+                for (int i = 0; i < values.Length; ++i)
                 {
-                    if (i == values.Length - 1 && values[i - 1] == values[i])
+                    if (i == values.Length - 1)
                     {
-                        ++dataCount;
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i - 1]));
+                        writer.Write(Convert.ToChar(values[i]));
                         dataCount = 1;
                     }
 
-                    else if (values[i - 1] == values[i])
+                    else if (values[i] == values[i + 1])
                     {
                         ++dataCount;
                     }
@@ -37,21 +36,21 @@ namespace Lab11
                     else if (dataCount >= 255)
                     {
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i - 1]));
+                        writer.Write(Convert.ToChar(values[i]));
                         dataCount = 1;
                     }
 
                     else if (dataCount > 16)
                     {
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i - 1]));
+                        writer.Write(Convert.ToChar(values[i]));
                         dataCount = 1;
                     }
 
                     else
                     {
                         writer.Write(Convert.ToChar(dataCount));
-                        writer.Write(Convert.ToChar(values[i - 1]));
+                        writer.Write(Convert.ToChar(values[i]));
                         dataCount = 1;
                     }
                 }
@@ -67,12 +66,27 @@ namespace Lab11
                 return false;
             }
 
-            char[] values = new char[input.Length];
+            char[] tempChar = new char[input.Length];
             using (var reader = new StreamReader(input))
             using (var writer = new BinaryWriter(output))
             {
-                reader.Read(values, 0, values.Length);
-                
+                reader.Read(tempChar, 0, tempChar.Length);
+
+                char[] keys = new char[tempChar.Length / 2];
+                char[] values = new char[tempChar.Length / 2];
+                for (int i = 0; i < tempChar.Length; ++i)
+                {
+                    if (i % 2 == 0)
+                    {
+                        keys[i] = tempChar[i];
+                    }
+                    else
+                    {
+                        values[i] = tempChar[i];
+                    }
+                }
+
+
             }
 
             return true;
