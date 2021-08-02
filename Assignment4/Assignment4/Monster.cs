@@ -17,6 +17,10 @@ namespace Assignment4
             mDefenseStat = defense;
         }
 
+        public Monster(uint capacity)
+        {
+        }
+
         public string Name { get; private set; }
         public EElementType ElementType { get; private set; }
 
@@ -90,7 +94,7 @@ namespace Assignment4
         {
             double defaultDamage = mAttackStat - otherMonster.mDefenseStat;
             int comparativeAdvantage = DetermineComparactiveAdvantage(ElementType, otherMonster);
-            double finalDamage = 1;
+            double finalDamage;
 
             switch (comparativeAdvantage)
             {
@@ -98,17 +102,21 @@ namespace Assignment4
                     finalDamage = defaultDamage * 0.5;
                     finalDamage = finalDamage < 1 ? 1 : finalDamage;
                     otherMonster.mHealth = otherMonster.mHealth - (int)finalDamage;
+                    otherMonster.mHealth = otherMonster.mHealth < 0 ? 0 : otherMonster.mHealth;
                     break;
 
                 case 0:
-                    defaultDamage = defaultDamage < 1 ? 1 : defaultDamage;
-                    otherMonster.mHealth = otherMonster.mHealth - (int)defaultDamage;
+                    finalDamage = defaultDamage;
+                    finalDamage = finalDamage < 1 ? 1 : finalDamage;
+                    otherMonster.mHealth = otherMonster.mHealth - (int)finalDamage;
+                    otherMonster.mHealth = otherMonster.mHealth < 0 ? 0 : otherMonster.mHealth;
                     break;
 
                 case 1:
                     finalDamage = defaultDamage * 1.5;
                     finalDamage = finalDamage < 1 ? 1 : finalDamage;
                     otherMonster.mHealth = otherMonster.mHealth - (int)finalDamage;
+                    otherMonster.mHealth = otherMonster.mHealth < 0 ? 0 : otherMonster.mHealth;
                     break;
             }
         }
