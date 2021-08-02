@@ -55,6 +55,11 @@ namespace Assignment4
 
         public void GoToNextTurn()
         {
+            if (MonsterCount == 1)
+            {
+                return;
+            }
+
             for (int i = 0; i < MonsterCount; ++i)
             {
                 if (Monsters[i].Health == 0)
