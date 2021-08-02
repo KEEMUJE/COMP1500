@@ -17,31 +17,39 @@ namespace Assignment4
         public uint Turns { get; private set; }
         public uint MonsterCount { get; private set; }
         public Monster ObjectName { get; private set; }
-        public Monster[] monsters { get; private set; }
+        public Monster[] Monsters { get; private set; }
 
         public void LoadMonsters(string filepath)
         {
             const int MONSTER_DATAS = 5;
-            string[] LoadMonsterText = File.ReadAllLines(filepath);
-            string[] currentMonsterInfo = new string[MONSTER_DATAS];
-            monsters = new Monster[LoadMonsterText.Length];
-            
-            for (int i = 0; i < LoadMonsterText.Length; ++i)
+            try
             {
-                if (MonsterCount == Capacity)
+                string[] loadMonsterText = File.ReadAllLines(filepath);
+                string[] currentMonsterInfo = new string[MONSTER_DATAS];
+                Monsters = new Monster[loadMonsterText.Length];
+
+                for (int i = 0; i < loadMonsterText.Length; ++i)
                 {
-                    break;
+                    if (MonsterCount == Capacity)
+                    {
+                        break;
+                    }
+
+                    currentMonsterInfo = loadMonsterText[i].Split(',');
+                    string name = currentMonsterInfo[0];
+                    EElementType elementType = (EElementType)Enum.Parse(typeof(EElementType), currentMonsterInfo[1]);
+                    int health = int.Parse(currentMonsterInfo[2]);
+                    int attackStat = int.Parse(currentMonsterInfo[3]);
+                    int defenseStat = int.Parse(currentMonsterInfo[4]);
+
+                    Monsters[i] = new Monster(name, elementType, health, attackStat, defenseStat);
+                    ++MonsterCount;
                 }
-
-                currentMonsterInfo = LoadMonsterText[i].Split(',');
-                string name = currentMonsterInfo[0];
-                EElementType elementType = (EElementType)Enum.Parse(typeof(EElementType), currentMonsterInfo[1]);
-                int health = int.Parse(currentMonsterInfo[2]);
-                int attackStat = int.Parse(currentMonsterInfo[3]);
-                int defenseStat = int.Parse(currentMonsterInfo[4]);
-
-                monsters[i] = new Monster(name, elementType, health, attackStat, defenseStat);
-                ++MonsterCount;
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("File Not Found Exception");
+                Console.WriteLine(e);
             }
         }
 
@@ -49,7 +57,7 @@ namespace Assignment4
         {
             for (int i = 0; i < MonsterCount; ++i)
             {
-                if (monsters[i].Health == 0)
+                if (Monsters[i].Health == 0)
                 {
                     --MonsterCount;
                     ++i;
@@ -57,12 +65,12 @@ namespace Assignment4
 
                 if (i == MonsterCount - 1)
                 {
-                    monsters[i].Attack(monsters[0]);
+                    Monsters[i].Attack(Monsters[0]);
                 }
 
                 else
                 {
-                    monsters[i].Attack(monsters[i + 1]);
+                    Monsters[i].Attack(Monsters[i + 1]);
                 }
             }
 
@@ -76,13 +84,13 @@ namespace Assignment4
                 return null;
             }
 
-            Monster bestMonster = monsters[0];
+            Monster bestMonster = Monsters[0];
 
-            for (int i = 0; i < monsters.Length; ++i)
+            for (int i = 1; i < Monsters.Length; ++i)
             {
-                if (bestMonster.Health < monsters[i].Health)
+                if (bestMonster.Health < Monsters[i].Health)
                 {
-                    bestMonster = monsters[i];
+                    bestMonster = Monsters[i];
                 }
             }
 
