@@ -16,33 +16,57 @@ namespace Assignment4
         public string ArenaName { get; private set; }
         public uint Turns { get; private set; }
         public uint MonsterCount { get; private set; }
-        public Monster objectName { get; private set; }
+        public Monster ObjectName { get; private set; }
+        public Monster[] monsters { get; private set; }
 
-        public void LoadMonsters(string filePath)
+        public void LoadMonsters(string filepath)
         {
-            const int monsterDatas = 5;
-            string[] readText = File.ReadAllLines(filePath);
-            string[][] monstersInfo = new string[Capacity][];
-
-            for (int i = 0; i < readText.Length; ++i)
+            const int MONSTER_DATAS = 5;
+            string[] LoadMonsterText = File.ReadAllLines(filepath);
+            string[] currentMonsterInfo = new string[MONSTER_DATAS];
+            monsters = new Monster[LoadMonsterText.Length];
+            
+            for (int i = 0; i < LoadMonsterText.Length; ++i)
             {
-                monstersInfo[i] = new string[monsterDatas];
-                monstersInfo[i] = readText[i].Split(',');
+                if (MonsterCount == Capacity)
+                {
+                    break;
+                }
 
-                string monsterName = monstersInfo[i][0];
-                EElementType elementType = (EElementType)Enum.Parse(typeof(EElementType), monstersInfo[i][1]);
-                int health = int.Parse(monstersInfo[i][2]);
-                int attackStat = int.Parse(monstersInfo[i][3]);
-                int defenseStat = int.Parse(monstersInfo[i][4]);
+                currentMonsterInfo = LoadMonsterText[i].Split(',');
+                string name = currentMonsterInfo[0];
+                EElementType elementType = (EElementType)Enum.Parse(typeof(EElementType), currentMonsterInfo[1]);
+                int health = int.Parse(currentMonsterInfo[2]);
+                int attackStat = int.Parse(currentMonsterInfo[3]);
+                int defenseStat = int.Parse(currentMonsterInfo[4]);
 
-                // 여기서 이름 없는 오브젝트의 정보를 어떻게 조회하는지 알면 다른 함수 구현은 쉬움.
-                new Monster(monsterName, elementType, health, attackStat, defenseStat);
+                monsters[i] = new Monster(name, elementType, health, attackStat, defenseStat);
                 ++MonsterCount;
             }
         }
 
         public void GoToNextTurn()
         {
+            for (int i = 0; i < MonsterCount; ++i)
+            {
+                if (monsters[i].Health == 0)
+                {
+                    --MonsterCount;
+                    ++i;
+                }
+
+                if (i == MonsterCount - 1)
+                {
+                    monsters[i].Attack(monsters[0]);
+                }
+
+                else
+                {
+                    monsters[i].Attack(monsters[i + 1]);
+                }
+            }
+
+            ++Turns;
         }
 
         public Monster GetHealthiest()
@@ -52,7 +76,17 @@ namespace Assignment4
                 return null;
             }
 
-            return null;
+            Monster bestMonster = monsters[0];
+
+            for (int i = 0; i < monsters.Length; ++i)
+            {
+                if (bestMonster.Health < monsters[i].Health)
+                {
+                    bestMonster = monsters[i];
+                }
+            }
+
+            return bestMonster;
         }
     }
 }
