@@ -115,64 +115,72 @@ namespace Assignment4
 
         public int DetermineComparactiveAdvantage(EElementType elementType, Monster otherMonster)
         {
-            int weak = -1;
-            int equal = 0;
-            int strong = 1;
+            const int WEAK = -1;
+            const int EQUAL = 0;
+            const int STRONG = 1;
 
             switch (elementType)
             {
                 case EElementType.Fire:
                     if (otherMonster.ElementType == EElementType.Wind)
                     {
-                        return strong;
+                        return STRONG;
                     }
 
-                    return weak;
+                    else if (otherMonster.ElementType == EElementType.Fire)
+                    {
+                        return EQUAL;
+                    }
+
+                    return WEAK;
 
                 case EElementType.Water:
                     if (otherMonster.ElementType == EElementType.Fire)
                     {
-                        return strong;
+                        return STRONG;
                     }
                     else if (otherMonster.ElementType == EElementType.Wind)
                     {
-                        return weak;
+                        return WEAK;
                     }
                     else
                     {
-                        return equal;
+                        return EQUAL;
                     }
 
                 case EElementType.Earth:
                     if (otherMonster.ElementType == EElementType.Fire)
                     {
-                        return strong;
+                        return STRONG;
                     }
                     else if (otherMonster.ElementType == EElementType.Wind)
                     {
-                        return weak;
+                        return WEAK;
                     }
                     else
                     {
-                        return equal;
+                        return EQUAL;
                     }
 
                 case EElementType.Wind:
                     if (otherMonster.ElementType == EElementType.Fire)
                     {
-                        return weak;
+                        return WEAK;
                     }
-                    else
+
+                    else if (otherMonster.ElementType == EElementType.Wind)
                     {
-                        return strong;
+                        return EQUAL;
                     }
+
+                    return STRONG;
 
                 default:
                     Debug.Assert(false);
                     break;
             }
 
-            return equal;
+            return EQUAL;
         }
     }
 }
