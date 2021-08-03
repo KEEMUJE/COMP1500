@@ -23,6 +23,7 @@ namespace Assignment4
         {
             try
             {
+                MonsterCount = 0;
                 string[] loadMonsterText = File.ReadAllLines(filepath);
                 Monsters = new List<Monster>((int)Capacity);
 
