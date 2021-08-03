@@ -82,19 +82,18 @@ namespace Assignment4
                     return;
                 }
 
-                if (i == MonsterCount - 1)
+                if (Monsters[i].Health <= 0)
+                {
+                    Monsters.Remove(Monsters[i]);
+                    --MonsterCount;
+                }
+                else if (i == MonsterCount - 1)
                 {
                     Monsters[i].Attack(Monsters[0]);
                 }
                 else
                 {
                     Monsters[i].Attack(Monsters[i + 1]);
-                }
-
-                if (Monsters[i].Health <= 0)
-                {
-                    Monsters.Remove(Monsters[i]);
-                    --MonsterCount;
                 }
             }
 
