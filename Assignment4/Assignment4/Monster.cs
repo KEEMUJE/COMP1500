@@ -92,62 +92,92 @@ namespace Assignment4
 
         public void Attack(Monster otherMonster)
         {
-            double defaultDamage = mAttackStat - otherMonster.mDefenseStat;
-            int comparativeAdvantage = DetermineComparactiveAdvantage(ElementType, otherMonster);
+            double defaultDamage = AttackStat - otherMonster.DefenseStat;
             double finalDamage;
+            int advantage = GetAdvantage(otherMonster);
 
-            switch (comparativeAdvantage)
+            switch (advantage)
             {
                 case -1:
                     finalDamage = defaultDamage * 0.5;
-                    finalDamage = finalDamage < 1 ? 1 : finalDamage;
+
+                    if (finalDamage < 1)
+                    {
+                        finalDamage = 1;
+                    }
+
                     otherMonster.mHealth = otherMonster.mHealth - (int)finalDamage;
-                    otherMonster.mHealth = otherMonster.mHealth < 0 ? 0 : otherMonster.mHealth;
+
+                    if (otherMonster.mHealth <= 0)
+                    {
+                        otherMonster.mHealth = 0;
+                    }
                     break;
 
                 case 0:
                     finalDamage = defaultDamage;
-                    finalDamage = finalDamage < 1 ? 1 : finalDamage;
+
+                    if (finalDamage < 1)
+                    {
+                        finalDamage = 1;
+                    }
+
                     otherMonster.mHealth = otherMonster.mHealth - (int)finalDamage;
-                    otherMonster.mHealth = otherMonster.mHealth < 0 ? 0 : otherMonster.mHealth;
+
+                    if (otherMonster.mHealth <= 0)
+                    {
+                        otherMonster.mHealth = 0;
+                    }
                     break;
 
                 case 1:
                     finalDamage = defaultDamage * 1.5;
-                    finalDamage = finalDamage < 1 ? 1 : finalDamage;
+
+                    if (finalDamage < 1)
+                    {
+                        finalDamage = 1;
+                    }
+
                     otherMonster.mHealth = otherMonster.mHealth - (int)finalDamage;
-                    otherMonster.mHealth = otherMonster.mHealth < 0 ? 0 : otherMonster.mHealth;
+
+                    if (otherMonster.mHealth <= 0)
+                    {
+                        otherMonster.mHealth = 0;
+                    }
                     break;
             }
         }
 
-        public int DetermineComparactiveAdvantage(EElementType elementType, Monster otherMonster)
+        public int GetAdvantage(Monster otherMonster)
         {
+            const int WRONG = -2;
             const int WEAK = -1;
             const int EQUAL = 0;
             const int STRONG = 1;
+            EElementType otherElement = otherMonster.ElementType;
 
-            switch (elementType)
+            switch (ElementType)
             {
                 case EElementType.Fire:
-                    if (otherMonster.ElementType == EElementType.Wind)
+                    if (otherElement == EElementType.Wind)
                     {
                         return STRONG;
                     }
-
-                    else if (otherMonster.ElementType == EElementType.Fire)
+                    else if (otherElement == EElementType.Fire)
                     {
                         return EQUAL;
                     }
-
-                    return WEAK;
+                    else
+                    {
+                        return WEAK;
+                    }
 
                 case EElementType.Water:
-                    if (otherMonster.ElementType == EElementType.Fire)
+                    if (otherElement == EElementType.Fire)
                     {
                         return STRONG;
                     }
-                    else if (otherMonster.ElementType == EElementType.Wind)
+                    else if (otherElement == EElementType.Wind)
                     {
                         return WEAK;
                     }
@@ -157,11 +187,11 @@ namespace Assignment4
                     }
 
                 case EElementType.Earth:
-                    if (otherMonster.ElementType == EElementType.Fire)
+                    if (otherElement == EElementType.Fire)
                     {
                         return STRONG;
                     }
-                    else if (otherMonster.ElementType == EElementType.Wind)
+                    else if (otherElement == EElementType.Wind)
                     {
                         return WEAK;
                     }
@@ -171,24 +201,25 @@ namespace Assignment4
                     }
 
                 case EElementType.Wind:
-                    if (otherMonster.ElementType == EElementType.Fire)
+                    if (otherElement == EElementType.Fire)
                     {
                         return WEAK;
                     }
-
-                    else if (otherMonster.ElementType == EElementType.Wind)
+                    else if (otherElement == EElementType.Wind)
                     {
                         return EQUAL;
                     }
-
-                    return STRONG;
+                    else
+                    {
+                        return STRONG;
+                    }
 
                 default:
                     Debug.Assert(false);
                     break;
             }
 
-            return EQUAL;
+            return WRONG;
         }
     }
 }
