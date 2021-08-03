@@ -75,14 +75,8 @@ namespace Assignment4
 
         public void GoToNextTurn()
         {
-            if (Monsters.Count == 0 || Monsters == null)
+            if (Monsters == null || MonsterCount <= 1)
             {
-                return;
-            }
-
-            if (MonsterCount == 1)
-            {
-                ++Turns;
                 return;
             }
 
