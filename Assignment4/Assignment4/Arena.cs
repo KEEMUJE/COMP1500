@@ -93,6 +93,12 @@ namespace Assignment4
                 else if (i == MonsterCount - 1)
                 {
                     Monsters[i].Attack(Monsters[0]);
+
+                    if (Monsters[0].Health <= 0)
+                    {
+                        removeIndex.Add(0);
+                        ++exitCount;
+                    }
                 }
                 else
                 {
