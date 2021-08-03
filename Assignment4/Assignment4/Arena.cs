@@ -75,8 +75,14 @@ namespace Assignment4
 
         public void GoToNextTurn()
         {
+            if (Monsters.Count == 0 || Monsters == null)
+            {
+                return;
+            }
+
             if (MonsterCount == 1)
             {
+                ++Turns;
                 return;
             }
 
@@ -111,8 +117,8 @@ namespace Assignment4
                 Monsters.Remove(Monsters[removeIndex[i]]);
             }
 
-            MonsterCount -= exitCount;
             ++Turns;
+            MonsterCount -= exitCount;
         }
 
         public Monster GetHealthiest()
