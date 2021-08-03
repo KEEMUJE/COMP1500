@@ -75,13 +75,13 @@ namespace Assignment4
 
         public void GoToNextTurn()
         {
-            if (MonsterCount == 1)
-            {
-                return;
-            }
-
             for (int i = 0; i < MonsterCount; ++i)
             {
+                if (MonsterCount == 1)
+                {
+                    return;
+                }
+
                 if (i == MonsterCount - 1)
                 {
                     Monsters[i].Attack(Monsters[0]);
