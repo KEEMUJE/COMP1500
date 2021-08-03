@@ -75,17 +75,20 @@ namespace Assignment4
 
         public void GoToNextTurn()
         {
+            if (MonsterCount == 1)
+            {
+                return;
+            }
+
+            List<int> removeIndex = new List<int>();
+            uint exitCount = 0;
+
             for (int i = 0; i < MonsterCount; ++i)
             {
-                if (MonsterCount == 1)
-                {
-                    return;
-                }
-
                 if (Monsters[i].Health <= 0)
                 {
-                    Monsters.Remove(Monsters[i]);
-                    --MonsterCount;
+                    removeIndex.Add(i);
+                    ++exitCount;
                 }
                 else if (i == MonsterCount - 1)
                 {
@@ -97,6 +100,12 @@ namespace Assignment4
                 }
             }
 
+            for (int i = 0; i < removeIndex.Count; ++i)
+            {
+                Monsters.Remove(Monsters[removeIndex[i]]);
+            }
+
+            MonsterCount -= exitCount;
             ++Turns;
         }
 
