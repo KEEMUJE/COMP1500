@@ -81,29 +81,29 @@ namespace Assignment4
             }
 
             List<int> removeIndex = new List<int>();
-            uint exitCount = 0;
+            uint deadMonster = 0;
 
             for (int i = 0; i < MonsterCount; ++i)
             {
                 if (Monsters[i].Health <= 0)
                 {
                     removeIndex.Add(i);
-                    ++exitCount;
+                    ++deadMonster;
                 }
-                else if (i == MonsterCount - 1)
-                {
-                    Monsters[i].Attack(Monsters[0]);
-
-                    if (Monsters[0].Health <= 0)
-                    {
-                        removeIndex.Add(0);
-                        ++exitCount;
-                    }
-                }
-                else
+                else if (i < MonsterCount - 1)
                 {
                     Monsters[i].Attack(Monsters[i + 1]);
                 }
+                else
+                {
+                    Monsters[i].Attack(Monsters[0]);
+                }
+            }
+
+            if (Monsters[0].Health <= 0)
+            {
+                removeIndex.Add(0);
+                ++deadMonster;
             }
 
             for (int i = 0; i < removeIndex.Count; ++i)
@@ -112,7 +112,7 @@ namespace Assignment4
             }
 
             ++Turns;
-            MonsterCount -= exitCount;
+            MonsterCount -= deadMonster;
         }
 
         public Monster GetHealthiest()
