@@ -23,7 +23,6 @@ namespace Assignment4
         {
             try
             {
-                MonsterCount = 0;
                 string[] loadMonsterText = File.ReadAllLines(filepath);
                 Monsters = new List<Monster>((int)Capacity);
 
@@ -52,28 +51,6 @@ namespace Assignment4
             }
         }
 
-        /*
-        public EElementType GetElementType(string elementType)
-        {
-            switch (elementType)
-            {
-                case "Fire":
-                    return EElementType.Fire;
-                case "Water":
-                    return EElementType.Water;
-                case "Earth":
-                    return EElementType.Earth;
-                case "Wind":
-                    return EElementType.Wind;
-                default:
-                    Debug.Assert(false);
-                    break;
-            }
-
-            return (EElementType)(-1);
-        }
-        */
-
         public void GoToNextTurn()
         {
             if (Monsters == null || MonsterCount <= 1)
@@ -82,14 +59,12 @@ namespace Assignment4
             }
 
             List<int> removeIndex = new List<int>();
-            uint deadMonster = 0;
 
             for (int i = 0; i < MonsterCount; ++i)
             {
                 if (Monsters[i].Health <= 0)
                 {
                     removeIndex.Add(i);
-                    ++deadMonster;
                 }
                 else if (i < MonsterCount - 1)
                 {
@@ -104,7 +79,6 @@ namespace Assignment4
             if (Monsters[0].Health <= 0)
             {
                 removeIndex.Add(0);
-                ++deadMonster;
             }
 
             for (int i = 0; i < removeIndex.Count; ++i)
@@ -113,7 +87,7 @@ namespace Assignment4
             }
 
             ++Turns;
-            MonsterCount -= deadMonster;
+            MonsterCount = (uint)Monsters.Count;
         }
 
         public Monster GetHealthiest()
