@@ -81,7 +81,7 @@ namespace Assignment4
                 removeIndex.Add(0);
             }
 
-            for (int i = 0; i < removeIndex.Count; ++i)
+            for (int i = removeIndex.Count - 1; i >= 0 ; --i)
             {
                 Monsters.Remove(Monsters[removeIndex[i]]);
             }
