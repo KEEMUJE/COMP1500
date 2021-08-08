@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Assignment4
@@ -97,17 +98,9 @@ namespace Assignment4
                 return null;
             }
 
-            Monster bestMonster = Monsters[0];
+            var bestMonster = Monsters.OrderByDescending(m => m.Health).ToList();
 
-            for (int i = 1; i < MonsterCount; ++i)
-            {
-                if (bestMonster.Health < Monsters[i].Health)
-                {
-                    bestMonster = Monsters[i];
-                }
-            }
-
-            return bestMonster;
+            return bestMonster[0];
         }
     }
 }
