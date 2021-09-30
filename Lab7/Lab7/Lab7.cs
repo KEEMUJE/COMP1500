@@ -27,7 +27,7 @@
                 return true;
             }
 
-            if (checker > 50)
+            if (checker > 50) // checker라는 변수를 사용한 겻보다, boolean 배열을 선언하여 방문 여부 체크가 더 나은 방법
             {
                 return false;
             }
